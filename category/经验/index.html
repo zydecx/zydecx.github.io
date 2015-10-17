@@ -47,6 +47,155 @@
           
 <article>
 	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun May 03 17:49:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Source Insight">Source Insight</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="http://www.sourceinsight.com/eval.html">Source Insight</a>是一款优秀的代码编辑和查看软件，提供了丰富的代码高亮、符号关联等功能，尤其对于代码查看及其方便。目前的最新版本是<a href="http://www.sourceinsight.com/distribute/Si3576Setup.exe">3.50.0076</a>。</p>
+<p>使用Source Insight查看Java项目代码时，需要做以下工作：</p>
+<ol>
+<li><p>关联JDK源代码<br />Source Insight工作空间下提供一个<code>Base</code>项目，这是一个全局项目，工作空间下的其他项目均可访问该项目下的代码并建立符号关联。因此，可以将系统库文件放在<code>Base</code>项目下。对于Java项目而言，可以将JDK源代码置于<code>Base</code>项目下，使其他项目均可访问JDK的源码。</p>
+<a href="http://blog.csdn.net/erickhuang1989/article/details/8524446">配置方法</a>为：<div class="article-more"><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="ssh">检查SSH密钥是否存在</h2>
+<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
+<pre><code>ls -al ~/.ssh</code></pre>
+<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Thu Aug 13 10:51:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/GitLab">GitLab</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="https://about.gitlab.com/features/">GitLab</a>是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的<code>Git</code>项目仓库，可以通过Web界面访问公开或私人项目。</p>
+<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<div class="article-more"><a href="http://zydecx.github.io/2015/08/build-gitlab.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/pandoc-tutorial.html">How to Convert Documents With Pandoc</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Tue Apr 28 00:32:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Pandoc">Pandoc</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Markdown">Markdown</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="whats-pandoc">What's Pandoc</h2>
+<p>According to <a href="http://pandoc.org/">official site</a>, Pandoc is <em>your swiss-army knify</em> to convert files from one markup format into another.</p>
+<p>Pandoc can convert documents in markdown, reStructuredText, textile, HTML, DocBook, LaTeX, MediaWiki markup, TWiki markup, OPML, Emacs Org-Mode, Txt2Tags, Microsoft Word docx, EPUB, or Haddock markup to</p>
+<ul>
+<li>HTML formats: XHTML, HTML5, and HTML slide shows using Slidy, reveal.js, Slideous, S5, or DZSlides.</li>
+<li>Word processor formats: Microsoft Word docx, OpenOffice/LibreOffice ODT, OpenDocument XML</li>
+<li>Ebooks: EPUB version 2 or 3, FictionBook2</li>
+<li>Documentation formats: DocBook, GNU TexInfo, Groff man pages, Haddock markup</li>
+<li>Page layout formats: InDesign ICML</li>
+<li>Outline formats: OPML</li>
+<li>TeX formats: LaTeX, ConTeXt, LaTeX Beamer slides</li>
+<li>PDF via LaTeX</li>
+<li>Lightweight markup formats: Markdown, reStructuredText, AsciiDoc, MediaWiki markup, DokuWiki markup, Emacs Org-Mode, Textile</li>
+<li>Custom formats: custom writers can be written in lua.<div class="article-more"><a href="http://zydecx.github.io/2015/08/pandoc-tutorial.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
 		<h1><a href="http://zydecx.github.io/2015/01/install-ubuntu-with-wubi.html">使用Wubi安装Ubuntu 14.04</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
@@ -157,155 +306,6 @@
 
 <hr class="article-separator">
 
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/pandoc-tutorial.html">How to Convert Documents With Pandoc</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Tue Apr 28 00:32:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Pandoc">Pandoc</a></li>
-
-<li><a href="http://zydecx.github.io/tag/Markdown">Markdown</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2 id="whats-pandoc">What's Pandoc</h2>
-<p>According to <a href="http://pandoc.org/">official site</a>, Pandoc is <em>your swiss-army knify</em> to convert files from one markup format into another.</p>
-<p>Pandoc can convert documents in markdown, reStructuredText, textile, HTML, DocBook, LaTeX, MediaWiki markup, TWiki markup, OPML, Emacs Org-Mode, Txt2Tags, Microsoft Word docx, EPUB, or Haddock markup to</p>
-<ul>
-<li>HTML formats: XHTML, HTML5, and HTML slide shows using Slidy, reveal.js, Slideous, S5, or DZSlides.</li>
-<li>Word processor formats: Microsoft Word docx, OpenOffice/LibreOffice ODT, OpenDocument XML</li>
-<li>Ebooks: EPUB version 2 or 3, FictionBook2</li>
-<li>Documentation formats: DocBook, GNU TexInfo, Groff man pages, Haddock markup</li>
-<li>Page layout formats: InDesign ICML</li>
-<li>Outline formats: OPML</li>
-<li>TeX formats: LaTeX, ConTeXt, LaTeX Beamer slides</li>
-<li>PDF via LaTeX</li>
-<li>Lightweight markup formats: Markdown, reStructuredText, AsciiDoc, MediaWiki markup, DokuWiki markup, Emacs Org-Mode, Textile</li>
-<li>Custom formats: custom writers can be written in lua.<div class="article-more"><a href="http://zydecx.github.io/2015/08/pandoc-tutorial.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun May 03 17:49:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Source Insight">Source Insight</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p><a href="http://www.sourceinsight.com/eval.html">Source Insight</a>是一款优秀的代码编辑和查看软件，提供了丰富的代码高亮、符号关联等功能，尤其对于代码查看及其方便。目前的最新版本是<a href="http://www.sourceinsight.com/distribute/Si3576Setup.exe">3.50.0076</a>。</p>
-<p>使用Source Insight查看Java项目代码时，需要做以下工作：</p>
-<ol>
-<li><p>关联JDK源代码<br />Source Insight工作空间下提供一个<code>Base</code>项目，这是一个全局项目，工作空间下的其他项目均可访问该项目下的代码并建立符号关联。因此，可以将系统库文件放在<code>Base</code>项目下。对于Java项目而言，可以将JDK源代码置于<code>Base</code>项目下，使其他项目均可访问JDK的源码。</p>
-<a href="http://blog.csdn.net/erickhuang1989/article/details/8524446">配置方法</a>为：<div class="article-more"><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2 id="ssh">检查SSH密钥是否存在</h2>
-<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
-<pre><code>ls -al ~/.ssh</code></pre>
-<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Thu Aug 13 10:51:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/GitLab">GitLab</a></li>
-
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p><a href="https://about.gitlab.com/features/">GitLab</a>是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的<code>Git</code>项目仓库，可以通过Web界面访问公开或私人项目。</p>
-<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<div class="article-more"><a href="http://zydecx.github.io/2015/08/build-gitlab.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
           
           
           <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
@@ -322,15 +322,15 @@
 	<ul>
 		<a href="#"><strong>Recent</strong></a>
 		
+<li><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></li>
+
 <li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></li>
 
 <li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
 
 <li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
-
-<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
-
-<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
 
 	</ul>
 </nav>
