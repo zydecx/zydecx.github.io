@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>#Git</title>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          
+	<header>
+		<h1>#Git</h1>
+	</header>
+
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 18:12:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p>阅读本文前，请先参考<strong>使用SSH密钥连接Git仓库</strong>了解SSH密钥配置方法。</p>
+<h2>场景</h2>
+<p>有时，在一台机器上需同时使用多个Git账号（个人账号和工作账号），不同的Git仓库使用不同的账号访问。本文将介绍如何通过配置实现该需求。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="ssh">检查SSH密钥是否存在</h2>
+<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
+<pre><code>ls -al ~/.ssh</code></pre>
+<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Thu Aug 13 10:51:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/GitLab">GitLab</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="https://about.gitlab.com/features/">GitLab</a>是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的<code>Git</code>项目仓库，可以通过Web界面访问公开或私人项目。</p>
+<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<div class="article-more"><a href="http://zydecx.github.io/2015/08/build-gitlab.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

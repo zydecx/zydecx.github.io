@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>JavaScript数据类型检测</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="JavaScript">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>JavaScript数据类型检测</title>
+<meta name="htmldecoder:category" content="技术">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-8-23 21:04">
+<meta name="htmldecoder:modified" content="2015-08-23 21:04">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Aug 23 21:04:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2>数据类型概述</h2>
+<p>JavaScript的数据类型不像Java等语言那样清晰，或许这是JavaScript的变量是松散类型的原因。概括地讲，JavaScript变量的数据类型包括：</p>
+<ul>
+<li>Undefined</li>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+<li>Object</li>
+<li>Function</li>
+</ul>
+<p>其中，Boolean/Number/String为基本类型，Object为引用类型，Function为函数，Undefined为JavaScript作为松散类型所特有的数据类型，在后文中会专门介绍。</p>
+<p><strong>注</strong>：<br /> 在【JavaScript高级程序设计】中，还定义了专门的Null类型，表示字面值为<code>null</code>的变量；并将Undefined类型也作为基本数据类型的一种。<br /><!--htmldecoder:more--></p>
+<h2 id="typeof"><code>typeof</code>操作符</h2>
+<p>变量或字面值的数据类型可以通过一元操作符<code>typeof</code>来粗略的检测，它返回一个字符串，表示待检测变量或字面值的数据类型，下面展示了一组类型检测的示例：</p>
+<pre><code>typeof 1    // =&quot;number&quot;
+typeof NaN  // =&quot;number&quot;
+typeof Number.MIN_VALUE // =&quot;number&quot;
+typeof Infinity // =&quot;number&quot;
+typeof &quot;123&quot;    // =&quot;string&quot;
+typeof true // =&quot;boolean&quot;
+typeof window   // =&quot;object&quot;
+typeof document // =&quot;object&quot;
+typeof Array    // =&quot;object&quot;
+typeof null // =&quot;object&quot;
+typeof function {}  // =&quot;function&quot;
+typeof eval // =&quot;function&quot;
+typeof Date // =&quot;function&quot;
+typeof sss  // =&quot;undefined&quot;
+typeof undefined    // =&quot;undefined</code></pre>
+<p>特别的，<code>null</code>认为是一个空的对象引用，因此<code>typeof null = &quot;object&quot;</code>。</p>
+<p><strong>注：<code>typeof</code>检测函数时的局限性</strong><br /> 在Safari 5及之前版本和Chrome 7及之前版本中，使用<code>typeof</code>操作符检测正则表达式时，也会返回<code>&quot;undefined&quot;</code>。这是由于在ECMA-262规范中，规定任何在内部实现[[call]]方法的对象在应用<code>typeof</code>时都应返回<code>&quot;function&quot;</code>，而上述浏览器的正则表达式中实现了该方法，从而引发这个问题。在IE和Firefox中则不存在这个问题，对正则表达式应用<code>typeof</code>时返回<code>&quot;object&quot;</code>。</p>
+<h2>基本数据类型</h2>
+<p>基本数据类型（Boolean/Number/String）可以通过<code>typeof</code>操作符来检测，如下所示：</p>
+<pre><code>typeof your-variable == &#39;boolean&#39;   //  判断是否为Boolean类型
+typeof your-variable == &#39;number&#39;    //  判断是否为Number类型
+typeof your-variable == &#39;string&#39;    //  判断是否为String类型</code></pre>
+<h2 id="undefined">Undefined类型</h2>
+<ul>
+<li><p><code>undefined</code></p>
+<p><code>undefined</code>是一个特殊的值。声明一个未初始化的变量，其默认值即为<code>undefined</code>，如下面的示例所示。需要注意的是，<code>typeof message</code>得到的是一个字符串<code>&quot;undefined&quot;</code>，表示这个变量是Undefined类型。</p>
+<pre><code>var message;    // =undefined
+alert(message == undefined);    // =true</code></pre>
+<p><strong>注：</strong><br /><code>undefined</code>派生自<code>null</code>，因此，他们进行比较的时候认为是相等的，即：</p>
+<pre><code>alert(undefined == null);   // =true</code></pre></li>
+<li><p><code>typeof your-variable == &quot;undefined&quot;</code></p>
+<p>有两种类型的变量在执行<code>typeof</code>检测时为<code>&quot;undefined&quot;</code>：</p>
+<ul>
+<li><p>已声明但未初始化或直接赋值<code>undefined</code>的变量</p></li>
+<li><p>未声明的变量</p>
+<p>对未声明的变量，只能执行一种操作，即通过<code>typeof</code>检测类型，否则，<strong>任何显式的调用都将导致<code>ReferenceError</code>错误</strong>。</p></li>
+</ul></li>
+<li><p>判断变量是否声明或是否初始化的方法</p>
+<p>由前文可以看出，无法通过<code>typeof your-variable == &quot;undefined&quot;</code>判断一个变量是未声明或还是未初始化。对于全局变量，可通过下面的方法判断该变量有没有声明和初始化：</p>
+<pre><code>&quot;your-variable&quot; in window   // 判断变量是否已声明
+&quot;your-variable&quot; in window &amp;&amp; typeof your-variable == &quot;undefined&quot;    // 判断变量是否未初始化</code></pre></li>
+</ul>
+<h2 id="instanceof"><code>instanceof</code>操作符</h2>
+<p><code>instanceof</code>操作符用于引用类型的检测，用来判断一个引用类型是什么类型的对象。如下所示，判断变量<code>colors</code>是否为<code>Array</code>类型：</p>
+<pre><code>var colors = new Array(&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;);
+alert(colors intanceof Array);  // =true</code></pre>
+<p>此外，对于原生的函数也可以通过<code>instanceof</code>检测，如：</p>
+<pre><code>alert(eval instanceof Function);    // =true
+alert(Function instanceof Object);  // =true</code></pre>
+<p><strong>注：<code>instanceof</code>的局限性</strong>:<br /> 当存在多个全局作用域（如一个页面包含多个frame）时，<code>instanceof</code>检测引用类型时会存在问题。因为<code>Array</code>是window的属性，如果通过<code>your-variable instanceof Array</code>检测是不是<code>Array</code>类型，不仅要求<code>your-variable</code>不仅是个数组，还必须与初始化它的语句在同一个全局作用域下。</p>
+<h2>引用类型</h2>
+<p>引用类型可以使用<code>typeof</code>和<code>instanceof</code>操作符共同来检测，如下所示。</p>
+<pre><code>typeof your-variable == &quot;object&quot; &amp;&amp; your-variable == null   // 判断是否为null
+typeof your-variable == &quot;object&quot; &amp;&amp; your-variable instanceof Object // 判断是否为Object类型
+typeof your-variable == &quot;object&quot; &amp;&amp; your-variable instanceof Array  // 判断是否为Array类型</code></pre>
+<h2>引用类型与函数类型的安全检测</h2>
+<p>如前文所述，<code>typeof</code>和<code>instanceof</code>操作符在检测引用类型和函数类型时存在局限性，并不十分可靠。因此，这里介绍更安全的类型检测方法。</p>
+<p>由于在任何值上调用Object原生的toString()方法，都会返回<code>[object NativeConstructorName]</code>格式的字符串，其中，<code>NativeConstructorName</code>由类的<code>[[class]]</code>属性指定，因此，可通过该方法对引用类型和函数类型做更可靠的检测，如下所示：</p>
+<pre><code>typeof your-variable != &#39;undefined&#39; &amp;&amp; Object.prototype.toString.call(your-variable) == &#39;[object Array]&#39;    // 判断是否为Array类型
+typeof your-variable != &#39;undefined&#39; &amp;&amp; Object.prototype.toString.call(your-variable) == &#39;[object RegExp]&#39;       // 判断是否为RegRex类型
+typeof your-variable != &#39;undefined&#39; &amp;&amp; Object.prototype.toString.call(your-variable) == &#39;[object Function]&#39; // 判断是否为原生函数</code></pre>
+<p><strong>注</strong>：<br /> 该方法不能检测非原生构造函数的构造函数名，开发人员定义的任何构造函数都将返回<code>[object Object]</code>。</p>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

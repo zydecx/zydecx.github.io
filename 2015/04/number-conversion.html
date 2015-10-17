@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>进制转换-[什么是数学]读书笔记</title>
+
+	<meta charset="UTF-8">
+
+    <meta name="htmldecoder:date" content="2015-04-26 00:31">
+    <meta name="htmldecoder:modified" content="2015-04-26 00:31">
+    <meta name="htmldecoder:author" content="zydecx">
+    <meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+    <meta name="htmldecoder:category" content="随笔">
+    <meta name="htmldecoder:tags" content="什么是数学, 读书笔记">
+    <meta name="htmldecoder:abstract" content="">
+    <meta name="htmldecoder:enabled" content="true">
+	<title>进制转换-[什么是数学]读书笔记</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/04/number-conversion.html">进制转换-[什么是数学]读书笔记</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Apr 26 00:31:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/什么是数学">什么是数学</a></li>
+
+<li><a href="http://zydecx.github.io/tag/读书笔记">读书笔记</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p><strong>问题：一个二进制的数，比如100011（二进制）可以直接转换成八进制表示吗？</strong></p>
+	<p>忽略这个问题本身，先从数的基本问题-数的表示说起。</p>
+	<h3>数的表示</h3>
+	<p>数学来自于现实。从最简单的问题讲起：我种了一棵、两棵、三棵、四棵、五棵、六棵、七棵、八棵、九棵、十棵、十一棵或者三十棵数，我该怎么记录我种的树的数量呢？现在，我们可以很轻松的回答这个问题，无怪乎用1、2、3、4、5、6、7、8、9、10、11或30表示这些数量；而在罗马数字中，则分别使用Ⅰ、Ⅱ、Ⅲ、Ⅳ、Ⅴ、Ⅵ、Ⅶ、Ⅷ、Ⅸ、Ⅹ、Ⅺ和XXX表示。表示方式可能是不同的，但无论是现在用的11，还是罗马数字中的Ⅺ，它们的概念却是一致的：即我种的这十一棵树。在这个问题里，十一棵就是现实中的数量，11或Ⅺ就是数学中表示这个数量的符号。说这么多，只是为了强调一点，表示数字的符号是人为定义的，如果历史出现某个巧合，可能我们现在使用的就不是阿拉伯数字了；但不管使用什么符号，它表示的概念——现实中的数量却是不变的。<strong>数字只是一个人为定义的符号，但有实际的现实意义。</strong></p><!--htmldecoder:more-->
+	<p>说起数字，我们会很自然地想到0、1、2、3、4、5、6、7、8、9，通过进位我们可以用这十个数字表示所有的数，如比9大一的数10，比如11、10000。这是十进制下数字的表示方式。如果我们的祖先一开始使用的是二进制而非十进制，那么仅仅0和1两个数字便足够了。如果是十二进制呢，则需要给出十二个数字的表示方式，在0-9这十个数字的基础上，可能还要加上A（表示十）、B（表示十一）两个数字（当然，如前文所讲，A、B只是数字的表示形式，也完全可能是用~表示十）。<strong>N进制至少需要N个数字来表示所有的数。</strong></p>
+	<p>为了叫出任意一个数字的名字，至少需要为0-9这十个数字都定义一个名称，比如，汉语拼音中分别叫做líng、yī、èr、sān、sì、wǔ、liù、qī、bā、jiǔ。之后便可以用这十个名称来叫所有的数了。比如10（yī líng）、12（yī èr）、100（yī líng líng）。当然，为了简单，可以为特殊的数字定义特殊的叫法，比如汉语中10的各幂次都定义了叫法，10<sup>1</sup>（shí）、10<sup>2</sup>（bǎi）、10<sup>3</sup>（qiān）……英语中则仅为10<sup>3</sup>的各幂次定义了叫法，如10<sup>3</sup>（thousand）、10<sup>6</sup>（million）……</p>
+	<h3>数的运算</h3>
+	<p>数的表示问题解决后，紧接着的便是数的运算问题了。加法和减法是最基础的运算，它同样来自现实。比如，在原有的十一棵树基础上，第二年又长出一棵树，则现在便有了十二棵树，即11+1=12；冬天的时候为了生火，砍了两棵树，则只剩下十棵树了，即12-2=10。由此延伸的还有乘法、除法、幂等等运算。</p>
+	<p>我们从小便要学习下面这张九九乘法表：<pre>
+		1	2	3	4	5	6	7	8	9
+	1	1								
+	2	2	4							
+	3	3	6	9						
+	4	4	8	12	16					
+	5	5	10	15	20	25				
+	6	6	12	18	24	30	36			
+	7	7	14	21	28	35	42	49		
+	8	8	16	24	32	40	48	56	64	
+	9	9	18	27	36	45	54	63	72	81
+	</pre>以致于现在问起7*9便习惯性的得出63的结果。这（包括上面的加法运算）在十进制下是正确的。</p>
+	<p>可当我们采用八进制方式呢？此时我们仅用0-7（八进制）这八个数字便可以在八进制下表示所有的数字了，比7（八进制）大一的数为10（八进制）。这时候，用13（八进制）表示十一棵树，14（八进制）表示十二棵树，12（八进制）表示十棵树，则有以下运算成立：13+1=14（八进制）,14-2=12（八进制）。同样，八进制下可建立七七乘法表：<pre>
+		1	2	3	4	5	6	7
+	1	1						
+	2	2	4					
+	3	3	6	11				
+	4	4	10	14	20			
+	5	5	12	17	24	31		
+	6	6	14	22	30	36	44	
+	7	7	16	25	34	43	52	61
+	</pre></p>
+	<p>此时，我们原本建立在十进制上的很多概念就完全被颠覆了。当然，如果一开始学习的就是八进制，可能很自然地就得到7*7=61（八进制）的结果，反而对十进制下的7*7=49不理解了；尤其不理解的是，明明就只有0-7（八进制）这八个数字，为何多出一个9来。</p>
+	<h3>进制转换（十进制）</h3>
+	<p>首先从十进制下的进制转换讲起。在十进制下，通过幂指求和可以实现N进制到十进制的转换；通过辗转相除可以实现十进制到N进制的转换。举例来讲，将一个二进制数100011（二进制）转换成十进制的过程为：<pre>
+		2<sup>5</sup> + 2<sup>1</sup> + 2<sup>0</sup> = 32 + 2 + 1 = 35
+	</pre>，即100011（二进制）=35（十进制）。而将十进制下的35转换为八进制的过程为：<pre>
+		       余数
+		8)35
+		 8)4     3
+		   0     4
+	</pre>，即35（十进制）=43（八进制）。</p>
+	<p>总结下来，<strong>N进制→十进制：以N为底数幂指求和</strong>，<strong>十进制→N进制：以N为除数辗转相除</strong>；<strong>幂指求和、辗转相除过程使用十进制运算法则</strong>。</p>
+	<h3>进制转换（K进制）</h3>
+	<p>由十进制下的进制转换，我们可以推出K进制下的转换规则：<strong>N进制→K进制：以N为底数幂指求和</strong>，<strong>K进制→N进制：以N为除数辗转相除</strong>。与十进制的转换规则的唯一不同在于，<strong>幂指求和和辗转相除的过程均以K进制运算法则进行</strong>。</p>
+	<p>举例来讲，当K=8，即八进制下将一个二进制数100011（二进制）转换成八进制的过程为：<pre>
+		2<sup>5</sup> + 2<sup>1</sup> + 2<sup>0</sup> = 40 + 2 + 1 = 43
+	</pre>，即100011（二进制）=43（八进制）。注意，<strong>在八进制下，参考七七乘法表可知，2<sup>5</sup>（八进制）=40（八进制）</strong>。这与前文的结论相同，即100011（二进制）=35（十进制）=43（八进制）。</p>
+	<p>到这里，本文开头的问题便得到了解决，即<strong>一个二进制的数可以不通过十进制中介，直接转换成八进制数</strong>；并且，我们可以推及开来，得到这样一个结论：<br>
+	<strong>在K进制运算法则下，执行M进制→N进制：<br>
+	若K=M，以N为除数辗转相除；<br>
+	若K=N，以N为底数幂指求和；<br>
+	若K<>M&K<>N，先执行M进制→K进制转换，在执行K进制→N进制转换。</strong></p>
+
+	<p><em>这篇文章的严谨性问题我是没法保证的，毕竟在数学方面着实没啥造诣可言，文章中很多内容也只是凭着自己的逻辑铺展开来，如有错误，还望指正。也是闲来无事，翻起尘封许久的[什么是数学]，阅读的过程中偶然想到进制转换这个问题，没想到就写出这么篇文章来。或许内容很浅薄，但享受这番思考的乐趣，还是挺有意思的事情。</em></p>
+	<p><em>2015/04/26 凌晨， 上海</em></p>
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

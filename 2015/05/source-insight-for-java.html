@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>使用Source Insight查看Java项目代码</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="Source Insight">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>使用Source Insight查看Java项目代码</title>
+<meta name="htmldecoder:category" content="经验">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-05-03 17:49">
+<meta name="htmldecoder:modified" content="2015-05-03 17:49">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun May 03 17:49:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Source Insight">Source Insight</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="http://www.sourceinsight.com/eval.html">Source Insight</a>是一款优秀的代码编辑和查看软件，提供了丰富的代码高亮、符号关联等功能，尤其对于代码查看及其方便。目前的最新版本是<a href="http://www.sourceinsight.com/distribute/Si3576Setup.exe">3.50.0076</a>。</p>
+<p>使用Source Insight查看Java项目代码时，需要做以下工作：</p>
+<ol>
+<li><p>关联JDK源代码<br />Source Insight工作空间下提供一个<code>Base</code>项目，这是一个全局项目，工作空间下的其他项目均可访问该项目下的代码并建立符号关联。因此，可以将系统库文件放在<code>Base</code>项目下。对于Java项目而言，可以将JDK源代码置于<code>Base</code>项目下，使其他项目均可访问JDK的源码。</p>
+<a href="http://blog.csdn.net/erickhuang1989/article/details/8524446">配置方法</a>为：<!--htmldecoder:more-->
+<ul>
+<li>进入<code>Project-&gt;Open Project...</code>，双击<code>Base</code>项目打开</li>
+<li>进入<code>Project-&gt;Add and Remove Project Files...</code>，目录指向JDK源文件所在根目录，如<code>C:\Program Files\Java\jdk1.7.0_25\src</code>，点击<code>Add All</code>添加到项目中</li>
+<li>进入<code>Project-&gt;Synchronize Files...</code>，更新<code>Base</code>项目</li>
+</ul></li>
+<li><p>转换项目代码编码<br />Source Insight不支持UTF-8编码，导致中文乱码的问题出现。因此，在将含有中文的项目代码添加到Source Insight之前，首先需要通过工具将代码文件的编码改为GB2312或ANSI，以使中文能够正确的显示。</p></li>
+</ol>
+<p>做好以上两件工作后，便可以新建一个项目，导入Java项目代码查看了。</p>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,457 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>::技术</title>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          
+	<header>
+		<h1>::技术</h1>
+	</header>
+
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/01/rsa-in-java.html">RSA加/解密的Java实现</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Fri Jan 16 00:49:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/RSA">RSA</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p>RSA算法是一种常用的非对称加密算法。所谓非对称性，是指加/解密的过程中需要两个不同的密钥——公钥和私钥，通过公钥对数据加密，通过私钥对密文解密。RSA算法的可靠性是建立在大数因数分解的难度上的。在数论中，对极大整数做因数分解的难度极大，因此决定了RSA算法的高可靠性。若想了解RSA算法的数学原理，可参考<a href="http://zh.wikipedia.org/wiki/RSA%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95" target="_blank">WIKI:RSA加密算法</a>和<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank">RSA算法原理</a>（<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank">一</a>，<a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank">二</a>）</p>
+	<p>本文介绍在Java中实现RSA的加/解密操作。（测试环境：Windows OS, jdk_1.7.0_25）</p><div class="article-more"><a href="http://zydecx.github.io/2015/01/rsa-in-java.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Aug 23 21:04:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2>数据类型概述</h2>
+<p>JavaScript的数据类型不像Java等语言那样清晰，或许这是JavaScript的变量是松散类型的原因。概括地讲，JavaScript变量的数据类型包括：</p>
+<ul>
+<li>Undefined</li>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+<li>Object</li>
+<li>Function</li>
+</ul>
+<p>其中，Boolean/Number/String为基本类型，Object为引用类型，Function为函数，Undefined为JavaScript作为松散类型所特有的数据类型，在后文中会专门介绍。</p>
+<p><strong>注</strong>：<br /> 在【JavaScript高级程序设计】中，还定义了专门的Null类型，表示字面值为<code>null</code>的变量；并将Undefined类型也作为基本数据类型的一种。<br /><div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Wed Aug 26 21:55:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2>定义函数</h2>
+<p>最常见的函数定义方法如下所示，该示例定义了一个函数——sayHi。</p>
+<pre><code>sayHi();
+function sayHi(name, message) {
+    alert(&quot;hello &quot; + name + &quot;,&quot; + message);
+}</code></pre>
+<p>还可以通过函数表达式定义一个函数，如下例所示，同样定义了函数sayHi，只不过sayHi在这里是作为一个变量出现的，使用<code>typeof sayHi</code>检测得到<code>&quot;function&quot;</code>。但由于JavaScript变量初始化顺序的问题，这种定义方式要求函数必须在声明后才能使用，而不能像前面的示例一样在声明前使用。而且，从这种定义方式，也就不难理解另一个现象：函数可以被覆盖，就像变量被重新赋值一样。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-function.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Aug 23 17:22:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="javascript">在JavaScript中定义变量</h2>
+<p>如下所示，定义变量<code>message</code>，并赋值<code>&quot;hi&quot;</code>。</p>
+<pre><code>var message = &quot;hi&quot;;</code></pre>
+<p>其中，关键字<code>var</code>可省略，即直接通过<code>message = &quot;hi&quot;;</code>定义变量，但这种方式不推荐使用（该问题会在全局变量与局部变量中再讨论）。</p>
+<p>此外，也可以通过下面的方式一次定义多个变量。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-variable.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2014/11/learn-higcharts-2.html">学习Highcharts（二）从示例中认识Highcharts</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Wed Nov 05 20:15:00 CST 2014</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p>从“学习Highcharts（一）”就开始构思这篇文章。一直希望做个DEMO页面，可以形象、直观的介绍Highcharts的各个组件并展示示例。趁着公司培训，终于有了机会把它做出来。</p>
+
+<p>Highcharts的主要组件有：title（标题）、legend（图例）、axis（坐标轴）、tooltip（提示框）、series（数据列）。点击下方DEMO中对应标签可看到相应组件的动画演示<div class="article-more"><a href="http://zydecx.github.io/2014/11/learn-higcharts-2.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">学习Highcharts（一）——什么是Highcharts</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Jul 13 01:47:00 CST 2014</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<h2>我们需要一份好看的报表——从需求出发</h2>
+<p>假设你有一份几个城市过去一年月降水量的数据，你可以像下面这样列给你的客户或老板看：</p>
+<div>
+<table id="datatable">
+<thead>
+<tr>
+<th>月份</th>
+<th>Jan</th>
+<th>Feb</th>
+<th>Mar</th>
+<th>Apr</th>
+<th>May</th>
+<th>Jun</th>
+<th>Jul</th>
+<th>Aug</th>
+<th>Sep</th>
+<th>Oct</th>
+<th>Nov</th>
+<th>Dec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokyo</td>
+<td>49.9</td>
+<td>71.5</td>
+<td>106.4</td>
+<td>129.2</td>
+<td>144</td>
+<td>176</td>
+<td>135.6</td>
+<td>148.5</td>
+<td>216.4</td>
+<td>194.1</td>
+<td>95.6</td>
+<td>54.4</td>
+</tr>
+<tr>
+<td>New York</td>
+<td>83.6</td>
+<td>78.8</td>
+<td>98.5</td>
+<td>93.4</td>
+<td>106</td>
+<td>84.5</td>
+<td>105</td>
+<td>104.3</td>
+<td>91.2</td>
+<td>83.5</td>
+<td>106.6</td>
+<td>92.3</td>
+</tr>
+<tr>
+<td>London</td>
+<td>48.9</td>
+<td>38.8</td>
+<td>39.3</td>
+<td>41.4</td>
+<td>47</td>
+<td>48.3</td>
+<td>59</td>
+<td>59.6</td>
+<td>52.4</td>
+<td>65.2</td>
+<td>59.3</td>
+<td>51.2</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>42.4</td>
+<td>33.2</td>
+<td>34.5</td>
+<td>39.7</td>
+<td>52.6</td>
+<td>75.5</td>
+<td>57.4</td>
+<td>60.4</td>
+<td>47.6</td>
+<td>39.1</td>
+<td>46.8</td>
+<td>51.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>看上去很整齐，表格也挺漂亮。可看到这密密麻麻的数据，客户或老板会不会有种想哭的冲动？</p>
+
+<p>那如果换成下面这样呢？<div class="article-more"><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">ObjectOutputStream追加写入导致读取报错的问题分析</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Fri Mar 13 01:09:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p><strong>问题现象：</strong>使用ObjectOutputStream向同一个文件写入多个对象，<br>A). 当ObjectOutputStream在打开后连续写入多个对象再关闭，可通过ObjectInputStream正常读取写入的多个对象；<br>B). 当每写入一个对象即关闭ObjectOutputStream并在写入下一个对象时重新打开，通过ObjectInputStream读取对象时，可以正常读取第一个对象，但读取第二个对象时报错。典型的报错信息如下：
+		<pre>
+Exception in thread "main" java.io.StreamCorruptedException: invalid type code: AC
+	at java.io.ObjectInputStream.readObject0(Unknown Source)
+	at java.io.ObjectInputStream.readObject(Unknown Source)
+	at com.demo.ObjectSerializationDemo.writeObjectsSeparately(ObjectSerializationDemo.java:69)
+	at com.demo.ObjectSerializationDemo.main(ObjectSerializationDemo.java:17)
+		</pre></p><div class="article-more"><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

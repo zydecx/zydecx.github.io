@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>使用SSH密钥连接Git仓库</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="Git">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>使用SSH密钥连接Git仓库</title>
+<meta name="htmldecoder:category" content="经验">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-8-17 15:55">
+<meta name="htmldecoder:modified" content="2015-8-17 15:55">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="ssh">检查SSH密钥是否存在</h2>
+<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
+<pre><code>ls -al ~/.ssh</code></pre>
+<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<!--htmldecoder:more--></p>
+<h2 id="ssh">生成新的SSH密钥</h2>
+<ol>
+<li><p>打开<code>Git Bash</code>，执行下面的命令，其中，邮箱是Git仓库中使用的账号所对应的邮箱</p>
+<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></pre></li>
+<li><p>弹出下面的提示信息，如果需要修改密钥文件位置或名称，可以输入新的路径；直接回车使用默认路径</p>
+<pre><code>Enter file in which to save the key (/c/Users/you/.ssh/id_rsa): [Press enter or new path here]</code></pre></li>
+<li><p>接下来提示输入密码，直接回车不需要密码。仍然建议输入密码，否则，任何有电脑操作权限的用户均可以直接用你的账号向仓库提交代码，而不需要任何验证</p>
+<pre><code>Enter passphrase (empty for no passphrase): [Press Enter or Type a passphrase here]
+Enter same passphrase again: [Press Enter or Type a passphrase again here]</code></pre></li>
+<li><p>密码输入完成后，提示生成成功，并显示密钥指纹信息；此时在前面指定的目录下会看到有两个新的文件：<code>id_rsa.pub</code>/<code>id_rsa</code></p>
+<pre><code>Your identification has been saved in id_rsa.
+Your public key has been saved in id_rsa.pub.
+The key fingerprint is:
+b1:6b:d3:21:e2:cf:45:4a:37:80:a4:e4:d5:76:69:21 your_email@example.com
+The key&#39;s randomart image is:
++--[ RSA 4096]----+
+|    . o.E .o     |
+|   o + .o.+      |
+|    o ..oo       |
+|         +       |
+|      . S =      |
+|     . o B o     |
+|      . = o      |
+|       + o       |
+|        o        |
++-----------------+</code></pre></li>
+</ol>
+<h2 id="ssh-agent">添加密钥到ssh-agent</h2>
+<ol>
+<li><p>启动ssh-agent</p>
+<p>打开<code>Git Bash</code>，执行以下命令启动ssh-agent</p>
+<pre><code>ssh-agent -s</code></pre>
+<p><strong>Note:</strong></p>
+<p>使用<code>msysgit Bash on Windows</code>时，需要执行下面的命令才能成功启动。否则接下来使用<code>ssh-add</code>时会出现<code>Could not open a connection to your authentication agent</code>的错误。<a href="http://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent">引用</a></p>
+<pre><code>eval `ssh-agent -s`或eval \\$(ssh-agent -s)</code></pre></li>
+<li><p>将密钥添加到ssh-agent</p>
+<pre><code>ssh-add ~/.ssh/id_rsa</code></pre></li>
+</ol>
+<h2 id="gitgithub">添加密钥到Git仓库使用的账号（以GitHub为例）</h2>
+<ol>
+<li><p>将生成的公钥<code>id_rsa.pub</code>中的内容复制到剪贴板中（或者打开<code>Git Bash</code>，执行以下命令：）</p>
+<pre><code>clip &lt; ~/.ssh/id_rsa.pub</code></pre></li>
+<li><p>登陆<a href="http://www.github.com">GitHub</a>，点击右上角头像，依次进入<code>Settings</code>-&gt;<code>SSH keys</code>，点击<code>Add SSH key</code>，在<code>Title</code>中输入密钥描述信息，如“个人笔记本密钥”，在<code>Key</code>中输入刚才复制的公钥，点击<code>Add key</code>，添加公钥</p></li>
+</ol>
+<h2>验证连接</h2>
+<p>正式使用SSH密钥访问Git仓库前，最好验证密钥是否能成功连接到Git服务器。</p>
+<ol>
+<li><p>打开<code>Git Bash</code>，执行下面的命令（将<code>your-git-server-domain</code>替换成实际的Git服务器地址）</p>
+<pre><code>ssh -T git@your-git-server-domain</code></pre></li>
+<li><p>命令执行后，显示下面的警告，确认密钥的指纹信息后，输入<code>yes</code></p>
+<pre><code>The authenticity of host &#39;github.com (207.97.227.239)&#39; can&#39;t be established.
+# RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+# Are you sure you want to continue connecting (yes/no)?</code></pre></li>
+<li><p>显示下面的信息，确认用户名（username）为自己的，则表示已成功配置SSH密钥</p>
+<pre><code># Hi username! You&#39;ve successfully authenticated, but GitHub does not
+# provide shell access.</code></pre></li>
+</ol>
+<h2>其他</h2>
+<h3>修改密钥密码</h3>
+<pre><code>    ssh-keygen -p</code></pre>
+<h3 id="git">切换现有Git仓库地址</h3>
+<pre><code>    git remote -v
+    git remote set-url origin your-git-repository-address</code></pre>
+<h2>参考</h2>
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">Generating SSH keys</a><br /><a href="https://help.github.com/articles/working-with-ssh-key-passphrases/">Working with SSH key passphrases</a><br /><a href="https://help.github.com/articles/changing-a-remote-s-url/">Changing a remote's URL</a></p>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

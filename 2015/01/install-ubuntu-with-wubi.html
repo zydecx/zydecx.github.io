@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>使用Wubi安装Ubuntu 14.04</title>
+
+	<meta charset="UTF-8">
+
+    <meta name="htmldecoder:date" content="2015-01-24 20:59">
+    <meta name="htmldecoder:modified" content="2015-01-24 20:59">
+    <meta name="htmldecoder:author" content="zydecx">
+    <meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+    <meta name="htmldecoder:category" content="经验">
+    <meta name="htmldecoder:tags" content="Ubuntu, Wubi">
+    <meta name="htmldecoder:abstract" content="">
+    <meta name="htmldecoder:enabled" content="true">
+	<title>使用Wubi安装Ubuntu 14.04</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/01/install-ubuntu-with-wubi.html">使用Wubi安装Ubuntu 14.04</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sat Jan 24 20:59:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Ubuntu">Ubuntu</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Wubi">Wubi</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p><a href="http://zh.wikipedia.org/wiki/Wubi" target="_blank">Wubi</a>(Windows Ubuntu-Based Installer)是Ubuntu官方支持的一个安装工具。我们可以使用它在Windows像安装一个普通程序一样试用Ubuntu系统。Ubuntu 13.04起停止支持Wubi，但实际发现，在Windows 8.1中仍可以使用Wubi安装Ubuntu 14.04.1 LTS。</p>
+	<h3>1、下载Ubuntu安装包</h3>
+	<p>从<a href="http://www.ubuntu.org.cn/download/desktop" target="_blank">Ubuntu官网</a>中下载Ubuntu安装包<strong>ubuntu-14.04.1-desktop-amd64.iso</strong>。</p>
+	<h3>2、使用Wubi安装Ubuntu</h3>
+	<p>将安装包中wubi.exe解压到与安装包相同目录下，断开网络，运行wubi.exe，在弹出界面中配置安装的磁盘分区、分配空间大小、语言、用户名、密码等，安装Ubuntu。安装完成后重启，等待后续安装工作完成后，即可进入Ubuntu系统。</p><!--htmldecoder:more-->
+	<blockquote><i>
+		<h4>问题一：“为/检查磁盘时出现严重错误”</h4>
+		<p>安装完成后，可能出现“为/检查磁盘时出现严重错误”的错误，导致无法进入Ubuntu系统。该问题解决方法如下：</p>
+		<p>1、重新启动，进入Ubuntu启动菜单时，按键盘上字母e键，进入启动项编辑模式；</p>
+		<p>2、再启动项参数中找到“ ro ”，修改为“ rw ”，然后按F10重新引导，即可正常进入Ubuntu系统中。</p>
+		<p>上述方法只是临时解决无法进入Ubuntu系统的问题；下次启动时仍然会出现同样的问题，还需要执行相同的操作。通过下面的方法可永久解决该问题：</p>
+		<p>1、进入Ubuntu系统中后，编辑/etc/grub.d/10_lupin文件，将150行的“ ro ”修改为“ rw ”；</p>
+		<p>2、在终端执行sudo update-grub更新启动项配置。</p>
+		<p>这样，下次启动就不会遇到上述问题了。【参考：<a href="http://jingyan.baidu.com/article/6181c3e06e6003152ef15300.html" target="_blank">百度经验：Ubuntu系统的安装与使用</a>】</p>
+		<h4>问题二：“无线网络不可用”</h4>
+		<p>进入Ubuntu系统后，发现无线网卡不能使用，需要为无线网卡安装驱动。在终端中执行以下命令查看网卡信息：<pre>
+lspci -vvnn | grep -A 9 Network
+		</pre>，如我的无线网卡信息为：<pre>
+04:00.0 Network controller [0280]: Broadcom Corporation BCM4312 802.11b/g LP-PHY [14e4:4315] (rev 01)
+		</pre>，其中网卡型号BCM4312；然后进入<a href="https://help.ubuntu.com/community/WifiDocs/Driver" target="_blank">Ubuntu Wifi驱动帮助页</a>查找该驱动对应的帮助页面并进入，按教程安装需要的驱动。以我的BCM4312为例，驱动安装过程如下：</p>
+		<p>1、安装b43-fwcutter工具。下载<a href="http://bues.ch/b43/fwcutter/b43-fwcutter-018.tar.bz2" target="_blank">b43-fwcutter源码</a>，解压后，进入目录中运行以下命令安装b43-fwcutter：<pre>
+make
+sudo make install
+		</pre></p>
+		<p>2、安装网卡驱动。下载<a href="http://www.lwfinger.com/b43-firmware/broadcom-wl-5.100.138.tar.bz2" target="_blank">网卡驱动文件</a>，进入目录中运行以下命令安装驱动：<pre>
+sudo b43-fwcutter -w /lib/firmware ./linux/wl_apsta.o
+		</pre></p>
+		<p>3、加载网卡驱动。运行以下命令加载驱动：<pre>
+modprobe b43
+		</pre></p>
+		<p>【参考：<a href="http://www.linuxidc.com/Linux/2014-04/100115.htm" target="_blank">Ubuntu 14.04 无线网卡驱动安装</a>， <a href="http://wireless.kernel.org/en/users/Drivers/b43#firmware" target="_blank">b43 and b43legacy</a>】</p>
+	</i></blockquote>
+	<h4></h4>
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

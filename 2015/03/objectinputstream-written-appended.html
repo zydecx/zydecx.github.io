@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>ObjectOutputStream追加写入导致读取报错的问题分析</title>
+
+	<meta charset="UTF-8">
+
+    <meta name="htmldecoder:date" content="2015-03-13 01:09">
+    <meta name="htmldecoder:modified" content="2015-03-13 01:09">
+    <meta name="htmldecoder:author" content="zydecx">
+    <meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+    <meta name="htmldecoder:category" content="技术">
+    <meta name="htmldecoder:tags" content="Java">
+    <meta name="htmldecoder:abstract" content="">
+    <meta name="htmldecoder:enabled" content="true">
+	<title>ObjectOutputStream追加写入导致读取报错的问题分析</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">ObjectOutputStream追加写入导致读取报错的问题分析</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Fri Mar 13 01:09:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p><strong>问题现象：</strong>使用ObjectOutputStream向同一个文件写入多个对象，<br>A). 当ObjectOutputStream在打开后连续写入多个对象再关闭，可通过ObjectInputStream正常读取写入的多个对象；<br>B). 当每写入一个对象即关闭ObjectOutputStream并在写入下一个对象时重新打开，通过ObjectInputStream读取对象时，可以正常读取第一个对象，但读取第二个对象时报错。典型的报错信息如下：
+		<pre>
+Exception in thread "main" java.io.StreamCorruptedException: invalid type code: AC
+	at java.io.ObjectInputStream.readObject0(Unknown Source)
+	at java.io.ObjectInputStream.readObject(Unknown Source)
+	at com.demo.ObjectSerializationDemo.writeObjectsSeparately(ObjectSerializationDemo.java:69)
+	at com.demo.ObjectSerializationDemo.main(ObjectSerializationDemo.java:17)
+		</pre></p><!--htmldecoder:more-->
+	<p><strong>问题原因：</strong>创建ObjectOutputStream对象时，会向输出流中写入标志数据“AC ED 00 05”；创建ObjectInputStream对象时，会自动解析输入流中开始的这些标志数据，因此采用方法A操作可以正常读取写入的对象。</p>
+	<p>但当采用方法B)时，由于ObjectOutputStream创建了两次，因此写入第二个对象时，会再次添加标志数据；ObjectInputStream仅能解析第一个对象前的标志数据，后面的标志数据当作对象数据处理，导致处理错误。</p><p>可参考<a href="http://halzhang.iteye.com/blog/267917">这篇文章</a>的内容。</p>
+	<p>方法A)示例程序：
+		<pre>
+public static void writeObjectsContinually() throws FileNotFoundException, IOException, ClassNotFoundException  {
+	System.out.println("Write 2 Objects in one ObjectOutputStream:");
+	
+	String[] array1 = {"this", "is", "a", "demo", "program"};
+	String[] array2 = {"this", "is", "also", "a", "demo", "program"}; 
+	File f1 = new File("object.out_1");
+	File f2 = new File("object.out_2");
+		
+	/**
+	 * 在一个OutputStream中写入array1和array2
+	 */
+	ObjectOutputStream outputStream;
+	outputStream = new ObjectOutputStream(new FileOutputStream(f1));
+	outputStream.writeObject(array1);
+	outputStream.writeObject(array2);
+	outputStream.flush();
+	outputStream.close();
+
+	/**
+	 * 读取array1和array2
+	 */
+	ObjectInputStream inputStream;
+	inputStream = new ObjectInputStream(new FileInputStream(f1));
+	String[] arrayOut1 = (String[]) inputStream.readObject();
+	String[] arrayOut2 = (String[]) inputStream.readObject();
+	inputStream.close();
+
+	System.out.printf("==>>%s\n==>>before:%s\n==>>after:%s\n", "array1", Arrays.toString(array1), Arrays.toString(arrayOut1));
+	System.out.printf("==>>%s\n==>>before:%s\n==>>after:%s\n", "array2", Arrays.toString(array2), Arrays.toString(arrayOut2));
+}
+		</pre></p>
+	<p>方法B)示例程序：
+		<pre>
+public static void writeObjectsSeparately() throws FileNotFoundException, IOException, ClassNotFoundException  {
+	System.out.println("Write 2 Objects in two ObjectOutputStreams:");
+	
+	String[] array1 = {"this", "is", "a", "demo", "program"};
+	String[] array2 = {"this", "is", "also", "a", "demo", "program"}; 
+	File f1 = new File("object.out_1");
+	File f2 = new File("object.out_2");
+	
+	ObjectOutputStream outputStream;
+	/**
+	 * 打开OutputStream，写入array1
+	 */
+	outputStream = new ObjectOutputStream(new FileOutputStream(f2, true));
+	outputStream.writeObject(array1);
+	outputStream.flush();
+	outputStream.close();
+	/**
+	 * 打开OutputStream，写入array2
+	 */
+	outputStream = new ObjectOutputStream(new FileOutputStream(f2, true));
+	outputStream.writeObject(array2);
+	outputStream.flush();
+	outputStream.close();
+	
+	/**
+	 * 读取array1和array2
+	 */
+	ObjectInputStream inputStream;
+	inputStream = new ObjectInputStream(new FileInputStream(f2));
+	String[] arrayOut11 = (String[]) inputStream.readObject();	// 第一个对象读取成功
+	String[] arrayOut22 = (String[]) inputStream.readObject();	// 第二个对象读取时抛出异常
+	inputStream.close();
+
+	System.out.printf("==>>%s\n==>>before:%s\n==>>after:%s\n", "array1", Arrays.toString(array1), Arrays.toString(arrayOut11));
+	System.out.printf("==>>%s\n==>>before:%s\n==>>after:%s\n", "array2", Arrays.toString(array2), Arrays.toString(arrayOut22));
+}
+		</pre></p>
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>How to Convert Documents With Pandoc</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="Pandoc, Markdown">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>How to Convert Documents With Pandoc</title>
+<meta name="htmldecoder:category" content="经验">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-4-28 0:32">
+<meta name="htmldecoder:modified" content="2015-4-28 0:32">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/pandoc-tutorial.html">How to Convert Documents With Pandoc</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Tue Apr 28 00:32:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Pandoc">Pandoc</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Markdown">Markdown</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="whats-pandoc">What's Pandoc</h2>
+<p>According to <a href="http://pandoc.org/">official site</a>, Pandoc is <em>your swiss-army knify</em> to convert files from one markup format into another.</p>
+<p>Pandoc can convert documents in markdown, reStructuredText, textile, HTML, DocBook, LaTeX, MediaWiki markup, TWiki markup, OPML, Emacs Org-Mode, Txt2Tags, Microsoft Word docx, EPUB, or Haddock markup to</p>
+<ul>
+<li>HTML formats: XHTML, HTML5, and HTML slide shows using Slidy, reveal.js, Slideous, S5, or DZSlides.</li>
+<li>Word processor formats: Microsoft Word docx, OpenOffice/LibreOffice ODT, OpenDocument XML</li>
+<li>Ebooks: EPUB version 2 or 3, FictionBook2</li>
+<li>Documentation formats: DocBook, GNU TexInfo, Groff man pages, Haddock markup</li>
+<li>Page layout formats: InDesign ICML</li>
+<li>Outline formats: OPML</li>
+<li>TeX formats: LaTeX, ConTeXt, LaTeX Beamer slides</li>
+<li>PDF via LaTeX</li>
+<li>Lightweight markup formats: Markdown, reStructuredText, AsciiDoc, MediaWiki markup, DokuWiki markup, Emacs Org-Mode, Textile</li>
+<li>Custom formats: custom writers can be written in lua.<!--htmldecoder:more--></li>
+</ul>
+<h2 id="how-to-install-pandoc">How to Install Pandoc</h2>
+<p>As for <em>Windows</em> users, download a package installer at pandoc's <a href="https://github.com/jgm/pandoc/releases">download page</a> and install on your computer. After that, run <code>pandoc -v</code> in <em>command prompt</em> to verify if it is correctly installed.</p>
+<p><strong>NOTE:</strong> The default package doesn't support PDF output, additional tool <em>LaTeX</em> is needed. <a href="http://miktex.org/">MiKTeX</a> is recommended by official site. However, it does have some issues with Chinese characters exporting. In this case, <a href="http://www.ctex.org/CTeXDownload">CTeX Full</a> instead is a better choice.</p>
+<p>For users of <em>Mac OS X</em> or <em>Linux</em>, refer to <a href="http://pandoc.org/installing.html">offcial site</a> for more information about installation.</p>
+<h2 id="how-to-convert-document-with-pandoc">How to Convert Document With Pandoc</h2>
+<ol>
+<li><p>Convert a <em>webpage(html)</em> to <em>docx</em></p>
+<pre><code>pandoc -f html -t docx -o savefile.docx http://www.baidu.com</code></pre></li>
+<li><p>Convert a <em>html</em> to <em>markdown</em></p>
+<pre><code>pandoc -f html -t markdown -o savefile.md fromfile.html</code></pre></li>
+<li><p>Convert a <em>html</em> to <em>pdf</em></p>
+<pre><code>pandoc -f html -t latex -o savefile.pdf fromfile.html
+pandoc -o savefile.pdf fromfile.html</code></pre></li>
+<li><p>Convert a <em>markdown</em> to <em>mediawiki</em></p>
+<pre><code>pandoc -f markdown_github -t mediawiki -o savefile.wiki fromfile.md</code></pre></li>
+</ol>
+<h2 id="how-to-export-document-with-chinese-characters-to-pdf">How to Export Document with Chinese Characters to PDF</h2>
+<p>If your task is all about documents with English characters only, you can skip this section. This part talks about problems of exporting documents with Chinese characters to PDF.</p>
+<ol>
+<li><p>Install <a href="http://www.ctex.org/CTeXDownload">CTeX Full</a> instead of MiKTeX</p></li>
+<li><p>Define template</p>
+<p>Export Pandoc standard template using the following command:</p>
+<pre><code>pandoc -D latex &gt; template.tex</code></pre>
+<p>Open the template <strong>template.tex</strong> and find phrase <code>% if luatex or xelatex</code>, add the code below after this phrase.</p>
+<pre class=".latex"><code>% SUPPORT for Chinese
+\usepackage[boldfont,slantfont,CJKsetspaces,CJKchecksingle]{xeCJK}
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+
+\punctstyle{quanjiao}
+\setCJKmainfont{SimSun} 
+\setCJKsansfont{KaiTi}
+\setCJKmonofont{SimSun}</code></pre>
+<blockquote>
+<p><strong>Note:</strong><br />In my version of Pandoc(1.13.2), below is the default code after phrase <code>% if luatex or xelatex</code>.</p>
+<pre class=".latex"><code>20. \else % if luatex or xelatex
+21. \ifxetex
+22.   \usepackage{mathspec}
+23.   \usepackage{xltxtra,xunicode}
+24. \else
+25.   \usepackage{fontspec}
+26. \fi
+27. 
+28. \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+29. \newcommand{\euro}{€}</code></pre>
+<p>Errors occur if just add code after Line#20. Finally, it turns out to be OK to add the code at Line#27.</p>
+</blockquote></li>
+<li><p>Export documents</p>
+<p>Export documents to PDf using the following command:</p>
+<pre><code>pandoc -o savefile.pdf fromfile.html --latex-engine=xelatex --template=template.tex</code></pre>
+<p><strong>template.tex</strong> is just the template modified in stage 2.</p></li>
+</ol>
+<p>Thanks to <a href="http://www.cnblogs.com/liuyangnuts/archive/2013/04/23/3038354.html">this blog</a> for solving the problem.</p>
+<p>According to <a href="http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html#fn4">another blog</a>, it's also possible to download <a href="https://github.com/tzengyuxio/pages/tree/04745ecac01dd225e946b6fd3a3f66993a8226b5">pm-template.latex</a> and use this template to export documents to PDF. For this template, the only thing needs to be noticed is, <strong>replace <em>LiHei Pro</em> to a Chinese font you have installed in your machine</strong>.</p>
+<h2 id="pandocs-markdown">Pandoc's Markdown</h2>
+<p>Pandoc's author is really proud of its extension of markdown, or he wouldn't put 2/3 of the document talking about it.</p>
+<h2 id="how-to-produce-slide-shows-with-pandoc">How to Produce Slide Shows with Pandoc</h2>
+<p>It's fantastic to find that simple and concise slides can be made by Pandoc. One could keep collecting knowledges while occasionly transform them to slides to share with other people, without put so much time considering how to write PPT.</p>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>JavaScript函数</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="JavaScript">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>JavaScript函数</title>
+<meta name="htmldecoder:category" content="技术">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-08-26 21:55">
+<meta name="htmldecoder:modified" content="2015-05-03 17:49">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Wed Aug 26 21:55:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2>定义函数</h2>
+<p>最常见的函数定义方法如下所示，该示例定义了一个函数——sayHi。</p>
+<pre><code>sayHi();
+function sayHi(name, message) {
+    alert(&quot;hello &quot; + name + &quot;,&quot; + message);
+}</code></pre>
+<p>还可以通过函数表达式定义一个函数，如下例所示，同样定义了函数sayHi，只不过sayHi在这里是作为一个变量出现的，使用<code>typeof sayHi</code>检测得到<code>&quot;function&quot;</code>。但由于JavaScript变量初始化顺序的问题，这种定义方式要求函数必须在声明后才能使用，而不能像前面的示例一样在声明前使用。而且，从这种定义方式，也就不难理解另一个现象：函数可以被覆盖，就像变量被重新赋值一样。<!--htmldecoder:more--></p>
+<pre><code>var sayHi = function(name, message) {
+    alert(&quot;hello &quot; + name + &quot;,&quot; + message);
+}
+sayHi();</code></pre>
+<h2>函数的参数</h2>
+<ul>
+<li><p>没有重载</p>
+<p>JavaScript的函数没有重载。以前面定义的<code>sayHi</code>函数为例，虽然函数声明了<code>name</code>和<code>message</code>两个参数，但下面几种调用方式均不会出错，即实际传入的参数数量并不需要和函数声明中的形参一致，未传入的参数值为<code>undefined</code>，多余的参数无法直接通过形参访问。从这个角度，JavaScript的函数没有重载的概念。</p>
+<pre><code>sayHi();    // =hello undefined,undefined
+sayHi(&quot;John&quot;);  // =hello John,undefined
+sayHi(&quot;John&quot;, &quot;welcome to javascript&quot;); // =hello John,welcome to javascript
+sayHi(&quot;John&quot;, &quot;welcome to javascript&quot;, &quot;2015/08/26&quot;)    // =hello John,welcome to javascript</code></pre></li>
+<li><p>arguments对象</p>
+<p>如上所述，实际传入函数的参数数量可以和函数声明中的形参不一致。其实，在调用函数时，会生成一个参数数组对象——<code>arguments</code>，在函数内部可以访问该对象来获取每一个参数。它的特点有：</p>
+<ul>
+<li>与数组类似（然而并不是Array实例），可以通过下标访问元素，如<code>arguments[0]</code>访问第一个参数，<code>arguments[1]</code>访问第二个参数，依次类推</li>
+<li>参数数组长度不可改变，由传入的参数个数决定的</li>
+<li>若有定义形参，则它的值与对应形参的值保持同步，即在函数内对形参的修改会同步到对应的<code>arguments</code>元素上，反之亦然。需要强调的是，形参与<code>arguments</code>对应不同的内存空间，只不过它们的值会同步</li>
+</ul></li>
+</ul>
+<h2>函数作为变量</h2>
+<p>因为函数名本身就是变量，所以函数也可以作为值来使用。即函数既可以被赋值给一个变量，也可以作为参数传递给另一个函数，或者被另一个函数返回。如下面的示例，函数<code>runWithOne</code>接受另一个函数作为参数，并运行传入的函数。</p>
+<pre><code>function runWithOne(f) {
+    f(1);
+}
+funWithOne(function(a) {
+    alert(a);
+});</code></pre>
+<h2 id="this">this属性</h2>
+<h3 id="this">this引用</h3>
+<p>this是函数的一个内部属性，引用的是执行函数的环境对象，当在网页的全局作用域中调用函数时，this对象引用的就是window。需要强调的是，<strong>在调用函数之前，this的值是不确定的。</strong>如下面的示例所示：</p>
+<pre><code>window.color = &quot;red&quot;;
+var o = {color: &quot;blue&quot;};
+
+function sayColor() {
+    alert(this.color);
+}
+
+sayColor(); // =red; this = window
+
+o.sayColor = sayColor;
+o.sayColor();   // =blue; this = o</code></pre>
+<h3 id="this">改变this引用</h3>
+<p>可以通过<code>apply</code>、<code>call</code>或<code>bind</code>方法改变函数的this引用。具体方法为：</p>
+<ul>
+<li><p>apply</p>
+<p>函数的内部方法，第一个参数为作用域，第二个参数为参数数组，以前面的递归函数<code>factorial</code>为例。其中，下面的两种调用方式均可。</p>
+<pre><code>function callFactorial(num) {
+    return factorial.apply(this, arguments);
+    // return factorial.apply(this, [num]);
+}</code></pre></li>
+<li><p>call</p>
+<p>函数的内部方法，第一个参数为作用域，其余的参数直接以形参的形式传递给要调用的函数，而不是参数数组（这是与<code>apply</code>方法唯一的区别）。以前面的递归函数<code>factorial</code>为例。</p>
+<pre><code>function callFactorial(num) {
+    return factorial.call(this, num);
+}</code></pre></li>
+<li><p>bind</p>
+<p>该方法创建一个函数实例，唯一的参数为作用域，如下例所示。</p>
+<pre><code>function callFactorial(num) {
+    var newFactorial = factorial.bind(this);
+    return newFactorial(num);
+}</code></pre></li>
+</ul>
+<h3>构造函数</h3>
+<p>当使用<code>new</code>创建一个函数对象时，会将函数的作用域赋给新建的对象，因此，那时候，this指向的不再是执行函数的环境对象。该问题在后续会继续介绍。</p>
+<h2>其他函数内部属性</h2>
+<ul>
+<li><p>arguments</p>
+<p>前面介绍过，<code>arguments</code>存放函数的参数，此外，它还有一个<code>callee</code>属性，指向函数本身。比如下面是一个阶乘算法的示例。</p>
+<pre><code>function factorial(num) {
+    if (num &lt;= 1) {
+        return 1;
+    } else {
+        return num * factorial(num - 1);
+    }
+}</code></pre>
+<p>但该实现的一个很大缺点就是函数的实现与函数名<code>factorial</code>紧密耦合，如果需要修改函数名，则还需要修改对应的函数实现。下面展示了如何通过<code>callee</code>来解决这个问题：</p>
+<pre><code>function factorial(num) {
+    if (num &lt;= 1) {
+        return 1;
+    } else {
+        return num * arguments.callee(num - 1);
+    }
+}</code></pre>
+<p><strong>在严格模式下，访问<code>arguments.callee</code>会出错</strong>。</p></li>
+<li><p>caller</p>
+<p>caller保存了调用当前函数的函数的引用。如果在全局作用域中调用该函数，则其值为null。调用方式如下例所示，其中，使用<code>arguments.callee.caller</code>可以实现更松散的耦合。</p>
+<pre><code>function outer() {
+    inner();
+}
+
+function inner() {
+    alert(inner.caller);
+    alert(arguments.callee.caller);
+}
+
+outer();</code></pre></li>
+</ul>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>使用SSH密钥实现Git多账号切换</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="Git">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>使用SSH密钥实现Git多账号切换</title>
+<meta name="htmldecoder:category" content="经验">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-08-17 18:12">
+<meta name="htmldecoder:modified" content="2015-08-17 18:12">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 18:12:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p>阅读本文前，请先参考<strong>使用SSH密钥连接Git仓库</strong>了解SSH密钥配置方法。</p>
+<h2>场景</h2>
+<p>有时，在一台机器上需同时使用多个Git账号（个人账号和工作账号），不同的Git仓库使用不同的账号访问。本文将介绍如何通过配置实现该需求。<!--htmldecoder:more--></p>
+<h2 id="ssh">分别为每个账号生成SSH密钥</h2>
+<p>打开<code>Git Bash</code>，执行下面的命令，为每个账号分别生成SSH密钥（如可分别命名为：<code>id_rsa_private</code>/<code>id_rsa_work</code>）</p>
+<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></pre>
+<h2 id="ssh">在每个账号上关联SSH公钥</h2>
+<p>将生成的公钥分别关联到对应的账号上</p>
+<h2 id="ssh">添加SSH配置信息</h2>
+<p>打开<code>~/.ssh/config</code>文件，添加以下配置信息。它定义了<code>github_private</code>和<code>github_work</code>两个别名，分别对应个人账号和工作账号。</p>
+<pre><code>#for person use
+Host github_private
+HostName github.com
+IdentityFile ~/.ssh/id_rsa_private
+
+#for work use
+Host github_work
+HostName github.com
+IdentityFile ~/.ssh/id_rsa_work</code></pre>
+<h2 id="git">修改Git仓库地址</h2>
+<p>以上述配置为例，进入个人Git仓库，使用别名<code>github_private</code>代替服务器地址。其中，将<code>your-username</code>替换成你的用户名，<code>your-repo-name</code>替换成实际的仓库名。</p>
+<pre><code>git remote set-url origin git@github_private:your-username/your-repo-name.git</code></pre>
+<h2>参考</h2>
+<p><a href="http://www.cnblogs.com/foxracle/archive/2012/07/20/2599830.html">如何在同一台电脑上使用两个github账户</a></p>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>

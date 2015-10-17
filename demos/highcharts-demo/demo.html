@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="htmldecoder:enabled" content="false">
+	<title>Highcharts Demo</title>
+
+	<link rel="stylesheet" href="css/bootstrap/3.2.0/css/bootstrap.css">
+	<link rel="stylesheet" href="css/plugins/gritter/css/jquery.gritter.css">
+	<link rel="stylesheet" href="css/plugins/smartadmin/css/smartadmin-production.css">
+	<link rel="stylesheet" href="css/fontawesome/4.1.0/css/font-awesome.css">
+
+</head>
+<body>
+<div class="container-fluid" style="padding: 20px; margin: auto;">
+	<div class="row">
+		<div class="row">
+			<div class="col-md-6">
+				<!-- <h3 class="text-center">原图</h3> -->
+				<div class="row" id="hc-container-one"></div>
+			</div>
+			<div class="col-md-6">
+				<!-- <h3 class="text-center">测试图</h3> -->
+				<div class="row" id="hc-container-two"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<ul id="mytab" class="nav nav-tabs" role="tablist">
+				<li class="active"><a href="#hc-title" data-func="highlight_chart_title">Title</a></li>
+				<li><a href="#hc-legend" data-func="highlight_chart_legend">Legend</a></li>
+				<li><a href="#hc-axis" data-func="highlight_chart_axis">Axis</a></li>
+				<li><a href="#hc-tooltip" data-func="highlight_chart_tooltip">Tooltip</a></li>
+				<li><a href="#hc-series" data-func="highlight_chart_series">Series</a></li>
+				<li><a href="#hc-tools" data-func="do_what">Tools</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="hc-title">
+					<button type="button" class="btn btn-primary btn-hc-actions" data-func="show_chart_one">Show Left</button>
+					<button type="button" class="btn btn-info btn-hc-actions" data-func="show_chart_two">Show Right</button>
+					<button type="button" class="btn btn-success btn-hc-actions" data-func="show_chart_both">Show</button>
+					<button type="button" class="btn btn-danger btn-hc-actions" data-func="reset_both_chart">Reset</button>
+				</div>
+				<div class="tab-pane" id="hc-legend">
+					<button type="button" class="btn btn-success btn-hc-actions" data-func="show_chart_both">Show</button>
+					<button type="button" class="btn btn-primary btn-hc-actions" data-func="show_chart_one">Show Left</button>
+					<button type="button" class="btn btn-info btn-hc-actions" data-func="show_chart_two">Show Right</button>
+					<button type="button" class="btn btn-danger btn-hc-actions" data-func="reset_both_chart">Reset</button>
+				</div>
+				<div class="tab-pane" id="hc-axis">
+					<button type="button" class="btn btn-danger btn-hc-actions" data-func="reset_both_chart">Reset</button>
+					<button type="button" class="btn btn-primary btn-hc-actions" data-func="show_chart_one">Show Left</button>
+					<button type="button" class="btn btn-success btn-hc-actions" data-func="show_chart_both">Show</button>
+					<button type="button" class="btn btn-info btn-hc-actions" data-func="show_chart_two">Show Right</button>
+				</div>
+				<div class="tab-pane" id="hc-tooltip">
+					<button type="button" class="btn btn-success btn-hc-actions" data-func="show_chart_both">Show</button>
+					<button type="button" class="btn btn-danger btn-hc-actions" data-func="reset_both_chart">Reset</button>
+					<button type="button" class="btn btn-primary btn-hc-actions" data-func="show_chart_one">Show Left</button>
+					<button type="button" class="btn btn-info btn-hc-actions" data-func="show_chart_two">Show Right</button>
+				</div>
+				<div class="tab-pane" id="hc-series">
+					<button type="button" class="btn btn-info btn-hc-actions" data-func="show_chart_two">Show Right</button>
+					<button type="button" class="btn btn-primary btn-hc-actions" data-func="show_chart_one">Show Left</button>
+					<button type="button" class="btn btn-success btn-hc-actions" data-func="show_chart_both">Show</button>
+					<button type="button" class="btn btn-danger btn-hc-actions" data-func="reset_both_chart">Reset</button>
+				</div>
+				<div class="tab-pane" id="hc-tools">
+					<button type="button" class="btn btn-info btn-hc-actions" data-func="show_chart_two">Show Right</button>
+					<button type="button" class="btn btn-primary btn-hc-actions" data-func="show_chart_one">Show Left</button>
+					<button type="button" class="btn btn-success btn-hc-actions" data-func="show_chart_both">Show</button>
+					<button type="button" class="btn btn-danger btn-hc-actions" data-func="reset_both_chart">Reset</button>
+
+
+					<a class="btn btn-sm bg-color-blueDark txt-color-white btn-hc-actions" href="javascript:void(0);" data-func="show_chart_nodata">No Data</a>
+					<a class="btn btn-sm bg-color-blueDark txt-color-white btn-hc-actions" href="javascript:void(0);" data-func="show_chart_loading">Loading Data..</a>
+					<a class="btn btn-sm bg-color-blueDark txt-color-white btn-hc-actions" href="javascript:void(0);" data-func="show_chart_nodata_two">No Data2</a>
+					<a class="btn btn-sm bg-color-blueDark txt-color-white btn-hc-actions" href="javascript:void(0);" data-func="show_chart_time_line">时间轴</a>
+					<a class="btn btn-sm bg-color-blueDark txt-color-white btn-hc-actions" href="javascript:void(0);" data-func="not_use_utc">设置UTC</a>
+					<a class="btn btn-sm bg-color-blueDark txt-color-white btn-hc-actions" href="javascript:void(0);" data-func="show_chart_point_event">事件</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row mod-pane" data-mod="hc-info">
+				<div class="mod-head">
+					<h4>说明</h4>
+				</div>
+				<div class="mod-body">
+					<p></p>
+				</div>
+			</div>
+			<div class="row mod-pane" data-mod="hc-code">
+				<div class="mod-head">
+					<h4>配置代码</h4>
+				</div>
+				<div class="mod-body">
+					<p></p>
+				</div>
+			</div>
+
+			<div class="mod-container">
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_both">
+					并排显示Highcharts图表
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_both">
+					无
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_one">
+					显示单个Highcharts图表
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_one">
+					无
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_two">
+					显示单个Highcharts图表
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_two">
+					无
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="reset_both_chart">
+					重置当前图表
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="reset_both_chart">
+					无
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_nodata">
+					数据为空时，显示提示信息，需调用脚本文件modules/no-data-to-display.src.js
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_nodata">
+					<pre>
+Highcharts.setOptions({
+	lang: {
+		noData: "查询结果为空"
+	},
+	noData: {
+		style: {
+			fontWeight: 'bold',
+			fontSize: '25px',
+			color: '#303030',
+//					opacity: 0.8,
+			backgroundColor: 'gray'
+		}
+	}
+});
+					</pre>
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_nodata_two">
+					用缓冲样式来设置数据为空时的页面提示信息，需要显式调用showLoading()方法；刷新数据后调用hideLoading()方法取消提示。
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_nodata_two">
+					<pre>
+Highcharts.setOptions({
+	lang: {
+		loading: "<" + "i class='fa fa-gear fa-4x fa-spin txt-color-white'><" + "/i>"
+	},
+	loading: {
+		hideDuration: 500,
+		showDuration: 500,
+ 		labelStyle: {
+            color: 'white',
+    		fontSize: '30px'
+        },
+        position: {
+        	verticalAlign: 'middle'
+        },
+        style: {
+            backgroundColor: 'black'
+        }
+    }
+});
+
+chart.showLoading("查询结果为空");
+					</pre>
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_loading">
+					等待后台返回数据时，界面显示等待信息
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_loading">
+					<pre>
+Highcharts.setOptions({
+	lang: {
+		loading: "<" + "i class='fa fa-gear fa-4x fa-spin txt-color-white'><" + "/i>"
+	},
+	loading: {
+		hideDuration: 500,
+		showDuration: 500,
+        labelStyle: {
+	        color: 'white',
+    		fontSize: '40px'
+        },
+        style: {
+            backgroundColor: 'black',
+            opacity: 0.8
+        }
+    }
+});
+					</pre>
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_point_event">
+					图表点击事件，在plotOptions添加click事件在points.events.click下定义时，可直接用this引用点击点；直接用events.click定义，则需用event.point引用点击点。
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_point_event">
+					<p>series.data中添加自定义参数：</p>
+					<pre>
+series: [{
+	type: 'pie',
+	name: 'Browser share',
+	data: [
+	    {
+	        name: 'Firefox',
+	        y: 45.0,
+	        cn_name: '火狐'
+	    }]
+}];				
+					</pre>
+					<p>plotOptions添加点击事件：</p>
+					<pre>
+plotOptions: {
+    pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        depth: 35,
+        dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+        },
+        events: {
+        	click: function(event) {
+        		var desc = "<b>扇区信息</b><br>名称：" + event.point.name + "<br>中文名：" + event.point.cn_name + "<br>值：" + event.point.y + "<br>比例：" + event.point.percentage + " %";
+        		addNotify("gritter", "点击事件通知", desc, '5000', null);
+        	}
+        }
+    }
+},
+					</pre>
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="show_chart_time_line">
+					显示时间轴曲线
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="show_chart_time_line">
+					<pre>
+xAxis: {
+    type: 'datetime',
+    dateTimeLabelFormats: { // don't display the dummy year
+        month: '%e. %b',
+        year: '%b'
+    },
+    title: {
+        text: 'Date'
+    }
+},
+series: [{
+    name: 'Depth',
+    // Define the data points. All series have a dummy year
+    // of 1970/71 in order to be compared on the same x axis. Note
+    // that in JavaScript, months start at 0 for January, 1 for February etc.
+    data: [[new Date("8 3, 2014, 14:15:00").getTime(), 0],
+		[new Date("8 3, 2014, 16:15:00").getTime(), 0.6 ],
+		[new Date("8 3, 2014, 18:15:00").getTime(), 0.7 ],
+		[new Date("8 3, 2014, 20:15:00").getTime(), 0.8 ],
+		[new Date("8 3, 2014, 22:15:00").getTime(), 0.6 ],
+		[new Date("8 4, 2014, 0:15:00").getTime(), 0.6 ],
+		[new Date("8 4, 2014, 2:15:00").getTime(), 0.67],
+		[new Date("8 4, 2014, 4:15:00").getTime(), 0.81],
+		[new Date("8 4, 2014, 6:15:00").getTime(), 0.78],
+		[new Date("8 4, 2014, 7:15:00").getTime(), 0.98],
+		[new Date("8 4, 2014, 8:15:00").getTime(), 1.84],
+		[new Date("8 4, 2014, 10:15:00").getTime(), 1.80],
+		[new Date("8 4, 2014, 12:15:00").getTime(), 1.80],
+		[new Date("8 4, 2014, 14:15:00").getTime(), 1.92],
+		[new Date("8 4, 2014, 16:15:00").getTime(), 2.49],
+		[new Date("8 4, 2014, 18:15:00").getTime(), 2.79],
+		[new Date("8 4, 2014, 20:15:00").getTime(), 2.73],
+		[new Date("8 4, 2014, 22:15:00").getTime(), 2.61],
+		[new Date("8 5, 2014, 0:15:00").getTime(), 2.76],
+		[new Date("8 5, 2014, 5:15:00").getTime(), 2.82],
+		[new Date("8 5, 2014, 6:15:00").getTime(), 2.8 ],
+		[new Date("8 5, 2014, 7:15:00").getTime(), 2.1 ],
+		[new Date("8 5, 2014, 8:15:00").getTime(), 1.1 ],
+		[new Date("8 5, 2014, 9:15:00").getTime(), 0.25],
+		[new Date("8 5, 2014, 10:15:00").getTime(), 0   ]]
+}];
+					</pre>
+				</div>
+				<div class="mod-content" data-mod="hc-info" data-id="not_use_utc">
+					不使用UTC时间，在初始化Highcharts前调用下面代码
+				</div>
+				<div class="mod-content" data-mod="hc-code" data-id="not_use_utc">
+					<pre>
+Highcharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<script type="text/javascript" src="js/jquery/1.11.1/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/highcharts/4.0.1/highcharts.src.js"></script>
+	<script type="text/javascript" src="js/highcharts/4.0.1/highcharts-3d.src.js"></script>
+	<script type="text/javascript" src="js/highcharts/4.0.1/modules/exporting.src.js"></script>
+	<script type="text/javascript" src="js/highcharts/4.0.1/modules/no-data-to-display.src.js"></script>
+	<script type="text/javascript" src="js/bootstrap/3.2.0/bootstrap.js"></script>
+	<script type="text/javascript" src="js/plugins/jquery.gritter.js"></script>
+	<script type="text/javascript" src="js/plugins/SmartNotification.min.js"></script>
+
+	<script type="text/javascript" src="js/demo.js"></script>
+	<script>
+		$(function() {
+
+			$('#mytab a').click(function (e) {
+				e.preventDefault();
+				$(this).tab('show');
+				btnActionHandler.call(this, e);
+			});
+
+			$(".btn.btn-hc-actions").on("click", btnActionHandler);
+			$(".mod-content").hide();
+			
+			demoDisplay();
+		});
+	</script>
+<div>&nbsp;</div>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>学习Highcharts（一）——什么是Highcharts</title>
+
+	<meta charset="UTF-8">
+
+    <meta name="htmldecoder:date" content="2014-7-13 1:47">
+    <meta name="htmldecoder:modified" content="2014-7-13 1:47">
+    <meta name="htmldecoder:author" content="zydecx">
+    <meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+    <meta name="htmldecoder:category" content="技术">
+    <meta name="htmldecoder:tags" content="Highcharts">
+    <meta name="htmldecoder:abstract" content="">
+    <meta name="htmldecoder:enabled" content="true">
+	<title>学习Highcharts（一）——什么是Highcharts</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">学习Highcharts（一）——什么是Highcharts</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Jul 13 01:47:00 CST 2014</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<h2>我们需要一份好看的报表——从需求出发</h2>
+<p>假设你有一份几个城市过去一年月降水量的数据，你可以像下面这样列给你的客户或老板看：</p>
+<div>
+<table id="datatable">
+<thead>
+<tr>
+<th>月份</th>
+<th>Jan</th>
+<th>Feb</th>
+<th>Mar</th>
+<th>Apr</th>
+<th>May</th>
+<th>Jun</th>
+<th>Jul</th>
+<th>Aug</th>
+<th>Sep</th>
+<th>Oct</th>
+<th>Nov</th>
+<th>Dec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokyo</td>
+<td>49.9</td>
+<td>71.5</td>
+<td>106.4</td>
+<td>129.2</td>
+<td>144</td>
+<td>176</td>
+<td>135.6</td>
+<td>148.5</td>
+<td>216.4</td>
+<td>194.1</td>
+<td>95.6</td>
+<td>54.4</td>
+</tr>
+<tr>
+<td>New York</td>
+<td>83.6</td>
+<td>78.8</td>
+<td>98.5</td>
+<td>93.4</td>
+<td>106</td>
+<td>84.5</td>
+<td>105</td>
+<td>104.3</td>
+<td>91.2</td>
+<td>83.5</td>
+<td>106.6</td>
+<td>92.3</td>
+</tr>
+<tr>
+<td>London</td>
+<td>48.9</td>
+<td>38.8</td>
+<td>39.3</td>
+<td>41.4</td>
+<td>47</td>
+<td>48.3</td>
+<td>59</td>
+<td>59.6</td>
+<td>52.4</td>
+<td>65.2</td>
+<td>59.3</td>
+<td>51.2</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>42.4</td>
+<td>33.2</td>
+<td>34.5</td>
+<td>39.7</td>
+<td>52.6</td>
+<td>75.5</td>
+<td>57.4</td>
+<td>60.4</td>
+<td>47.6</td>
+<td>39.1</td>
+<td>46.8</td>
+<td>51.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>看上去很整齐，表格也挺漂亮。可看到这密密麻麻的数据，客户或老板会不会有种想哭的冲动？</p>
+
+<p>那如果换成下面这样呢？<!--htmldecoder:more-->四个城市、12个月，信息没有丢失；图形化的呈现，对比与趋势一目了然；鼠标移上去，提示框弹出这个月四个城市降水量的具体数据。看上去更好一些？别慌，需求怎么可能结束，老板这时发话了：我对Tokyo没什么兴趣，你给我让它即刻消失。是不是要重新画一张呢？很简单，在下面Tokyo的方块上点一下，哇，神奇的事情发生了！别急，还没完。Tokyo是消失了，可12个月的柱子摆在这里，老板表示密集恐惧：就只给我显示前半年的吧。这个该要再画一遍了吧？不急，试着用鼠标在图的左半部分画一个矩形，是不是看到了什么？（矩形怎么画？点一下，按住往后拖呀）纵然客户、老板虐我千百遍，我依然淡定的操作，深藏功与名。</p>
+<div id="hc-container" style="min-width: 310px; height: 400px; margin: 0 auto;"></div>
+<p>这就是Highcharts！</p>
+<h2>Highcharts是什么</h2>
+<p>前面的例子已经给了大家一个直观的例子，那就是Highcharts，拥有将枯燥的数据华丽地变身为美观形象、炫酷无比的图表的神奇力量。</p>
+
+<p>好了，不再继续吹了。Highcharts是一个用JavaScript实现的图表库，也可以说就是一个js文件（引用地址：<a href="http://code.highcharts.com/highcharts.js">http://code.highcharts.com/highcharts.js</a>），它用SVG（低版本IE中采用VML绘制）在网页中绘制图表。本质上与JQuery类似，只不过JQuery更偏向于框架级别的库文件，而Highcharts专注于图表的展现。借用它丰富的配置参数，可以在网页中绘制曲线图、饼图、柱状图等多种类型的图表。前文就是一个简单的柱状图的例子。</p>
+
+<p>这里谈谈Highcharts的优点：</p>
+<ol>
+	<li>良好的兼容性 官方宣称支持主流的手机和桌面浏览器，IE最低兼容到IE6版本。</li>
+	<li>丰富的图表类型 除了常见的曲线图、饼图、柱状图，诸如散点图、蛛网图、金字塔图、热力图等图表也都能通过Highcharts实现，基本覆盖了我们日常需要的统计图了。</li>
+	<li>美观及良好的交互 相信前文的示例已经展现了Highcharts的良好体验。最新更是推出了3D统计图，提供了更好的视觉效果。</li>
+	<li>灵活的配置 Highcharts提供了丰富的方法和参数，图表上的几乎每个组件都可以通过配置改变其内容和样式，这对开发人员是个福音。解决了数据的问题后，开发人员就可以专注于配置项，来满足老板的各项新奇需求。</li>
+</ol>
+<p>Highcharts针对个人和非盈利组织是免费的，如果是商业网站或项目，则需要购买开发者授权了。详细信息可以在下面的网站中了解：<a href="http://shop.highsoft.com/highcharts.html">http://shop.highsoft.com/highcharts.html</a>。</p>
+<h2>学习Highcharts需要什么基础吗</h2>
+<p>因为Highcharts主要用于在网页中绘制图表，所以学习Highcharts前需要基本的网页开发知识，这包括：HTML、CSS、Javascript和至少一个JavaScript框架（JQuery、MooTools或Prototype，本系列使用JQuery开发）。</p>
+
+<p>当然，绘制图表所需要的数据多从后台数据库中查询得到，前后台交互的知识也需要一定了解，如基于ajax+json的传递方式和数据格式</p>
+<h2>怎样搭建开发环境</h2>
+<p>前文说过，Highcharts本质上与JQuery一样，是一个js图表库，因此只需在网页中加上下面这句引用就可以使用Highcharts绘图了：</p>
+
+<pre>
+&lt;script src="http://code.highcharts.com/highcharts.js"&gt;&lt;/script&gt;
+</pre>
+<h2>获得支持与帮助</h2>
+<p>学习和遇到问题的时候，可以选择下面的方式获得帮助：</p>
+<ol>
+	<li>
+<div><p><a href="http://www.highcharts.com/">http://www.highcharts.com/</a><br>
+<a href="http://www.highcharts.com/demo">http://www.highcharts.com/demo</a><br>
+
+<a href="http://api.highcharts.com/highcharts">http://api.highcharts.com/highcharts</a></p></div>
+
+<p>毫无疑问，官方网站是获得支持的最权威的渠道了。官网提供了丰富的示例程序，学习这些示例程序可以快速入门，在示例程序上适当的修改就可以满足开发中大多数需求了。遇到不熟悉的方法和参数也可以在API页面中得到详细介绍。</p></li>
+	<li>
+<div><p><a href="http://stackoverflow.com">http://stackoverflow.com</a></p></div>
+<p>stackoverflow上汇聚了众多的技术大牛，要好好利用这个网站提问并学习其他开发者遇到类似问题时的解决方法。</p></li>
+	<li>
+<div><p><a href="http://www.google.com">http://www.google.com</a></p></div>
+<p>不多说了。</p></li>
+	<li>
+<div><p><a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/column-basic/">http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/column-basic/</a></p></div>
+<p>Highcharts使用的一个在线编辑网站，可在这里进行调试工作。一个很实用的功能：在向其他人提问前，先在这里保存快照，再共享快照链接，保证对方能重现你的问题。</p></li>
+	<li>
+<div><p><a href="http://www.hcharts.cn">http://www.hcharts.cn</a></p></div>
+<p>本来是一群国内开发者为普及Highcharts而做的一个翻译网站，现在已成为官方License代理商了。官网上有的内容这里基本上都有。他们工作做的很出色，对国内开发者是很方便的。</p></li>
+</ol>
+&nbsp;
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script type="text/javascript">
+(function() {
+    var chart = new Highcharts.Chart({
+        chart: {
+            type: 'column',
+            renderTo: 'hc-container',
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Monthly Average Rainfall'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ]
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Tokyo',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'New York',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'London',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }, {
+            name: 'Berlin',
+            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+        }]
+    });
+})();
+</script>
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></li>
+
+<li><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>
