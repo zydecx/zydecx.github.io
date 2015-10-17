@@ -47,10 +47,10 @@
           
 <article>
 	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">ObjectOutputStream追加写入导致读取报错的问题分析</a></h1>
+		<h1><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
-				<span>Time: <time>Fri Mar 13 01:09:00 CST 2015</time></span>
+				<span>Time: <time>Sun Aug 23 17:22:00 CST 2015</time></span>
 				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
 			</p>
 			<ul class="category">
@@ -62,21 +62,18 @@
 			<ul class="tag">
 				Tag:
 				
-<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
 
 			</ul>
 		</div>
 	</header>
 	<div class="article-content">
 		
-	<p><strong>问题现象：</strong>使用ObjectOutputStream向同一个文件写入多个对象，<br>A). 当ObjectOutputStream在打开后连续写入多个对象再关闭，可通过ObjectInputStream正常读取写入的多个对象；<br>B). 当每写入一个对象即关闭ObjectOutputStream并在写入下一个对象时重新打开，通过ObjectInputStream读取对象时，可以正常读取第一个对象，但读取第二个对象时报错。典型的报错信息如下：
-		<pre>
-Exception in thread "main" java.io.StreamCorruptedException: invalid type code: AC
-	at java.io.ObjectInputStream.readObject0(Unknown Source)
-	at java.io.ObjectInputStream.readObject(Unknown Source)
-	at com.demo.ObjectSerializationDemo.writeObjectsSeparately(ObjectSerializationDemo.java:69)
-	at com.demo.ObjectSerializationDemo.main(ObjectSerializationDemo.java:17)
-		</pre></p><div class="article-more"><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">...more</a></div>
+<h2 id="javascript">在JavaScript中定义变量</h2>
+<p>如下所示，定义变量<code>message</code>，并赋值<code>&quot;hi&quot;</code>。</p>
+<pre><code>var message = &quot;hi&quot;;</code></pre>
+<p>其中，关键字<code>var</code>可省略，即直接通过<code>message = &quot;hi&quot;;</code>定义变量，但这种方式不推荐使用（该问题会在全局变量与局部变量中再讨论）。</p>
+<p>此外，也可以通过下面的方式一次定义多个变量。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-variable.html">...more</a></div>
 
 	</div>
 </article>
@@ -114,40 +111,6 @@ function sayHi(name, message) {
     alert(&quot;hello &quot; + name + &quot;,&quot; + message);
 }</code></pre>
 <p>还可以通过函数表达式定义一个函数，如下例所示，同样定义了函数sayHi，只不过sayHi在这里是作为一个变量出现的，使用<code>typeof sayHi</code>检测得到<code>&quot;function&quot;</code>。但由于JavaScript变量初始化顺序的问题，这种定义方式要求函数必须在声明后才能使用，而不能像前面的示例一样在声明前使用。而且，从这种定义方式，也就不难理解另一个现象：函数可以被覆盖，就像变量被重新赋值一样。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-function.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/01/rsa-in-java.html">RSA加/解密的Java实现</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Fri Jan 16 00:49:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
-
-<li><a href="http://zydecx.github.io/tag/RSA">RSA</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-	<p>RSA算法是一种常用的非对称加密算法。所谓非对称性，是指加/解密的过程中需要两个不同的密钥——公钥和私钥，通过公钥对数据加密，通过私钥对密文解密。RSA算法的可靠性是建立在大数因数分解的难度上的。在数论中，对极大整数做因数分解的难度极大，因此决定了RSA算法的高可靠性。若想了解RSA算法的数学原理，可参考<a href="http://zh.wikipedia.org/wiki/RSA%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95" target="_blank">WIKI:RSA加密算法</a>和<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank">RSA算法原理</a>（<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank">一</a>，<a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank">二</a>）</p>
-	<p>本文介绍在Java中实现RSA的加/解密操作。（测试环境：Windows OS, jdk_1.7.0_25）</p><div class="article-more"><a href="http://zydecx.github.io/2015/01/rsa-in-java.html">...more</a></div>
 
 	</div>
 </article>
@@ -274,6 +237,44 @@ function sayHi(name, message) {
 
 <article>
 	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">ObjectOutputStream追加写入导致读取报错的问题分析</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Fri Mar 13 01:09:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p><strong>问题现象：</strong>使用ObjectOutputStream向同一个文件写入多个对象，<br>A). 当ObjectOutputStream在打开后连续写入多个对象再关闭，可通过ObjectInputStream正常读取写入的多个对象；<br>B). 当每写入一个对象即关闭ObjectOutputStream并在写入下一个对象时重新打开，通过ObjectInputStream读取对象时，可以正常读取第一个对象，但读取第二个对象时报错。典型的报错信息如下：
+		<pre>
+Exception in thread "main" java.io.StreamCorruptedException: invalid type code: AC
+	at java.io.ObjectInputStream.readObject0(Unknown Source)
+	at java.io.ObjectInputStream.readObject(Unknown Source)
+	at com.demo.ObjectSerializationDemo.writeObjectsSeparately(ObjectSerializationDemo.java:69)
+	at com.demo.ObjectSerializationDemo.main(ObjectSerializationDemo.java:17)
+		</pre></p><div class="article-more"><a href="http://zydecx.github.io/2015/03/objectinputstream-written-appended.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
 		<h1><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
@@ -316,6 +317,40 @@ function sayHi(name, message) {
 
 <article>
 	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/01/rsa-in-java.html">RSA加/解密的Java实现</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Fri Jan 16 00:49:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/RSA">RSA</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+	<p>RSA算法是一种常用的非对称加密算法。所谓非对称性，是指加/解密的过程中需要两个不同的密钥——公钥和私钥，通过公钥对数据加密，通过私钥对密文解密。RSA算法的可靠性是建立在大数因数分解的难度上的。在数论中，对极大整数做因数分解的难度极大，因此决定了RSA算法的高可靠性。若想了解RSA算法的数学原理，可参考<a href="http://zh.wikipedia.org/wiki/RSA%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95" target="_blank">WIKI:RSA加密算法</a>和<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank">RSA算法原理</a>（<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank">一</a>，<a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank">二</a>）</p>
+	<p>本文介绍在Java中实现RSA的加/解密操作。（测试环境：Windows OS, jdk_1.7.0_25）</p><div class="article-more"><a href="http://zydecx.github.io/2015/01/rsa-in-java.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
 		<h1><a href="http://zydecx.github.io/2014/11/learn-higcharts-2.html">学习Highcharts（二）从示例中认识Highcharts</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
@@ -341,41 +376,6 @@ function sayHi(name, message) {
 	<p>从“学习Highcharts（一）”就开始构思这篇文章。一直希望做个DEMO页面，可以形象、直观的介绍Highcharts的各个组件并展示示例。趁着公司培训，终于有了机会把它做出来。</p>
 
 <p>Highcharts的主要组件有：title（标题）、legend（图例）、axis（坐标轴）、tooltip（提示框）、series（数据列）。点击下方DEMO中对应标签可看到相应组件的动画演示<div class="article-more"><a href="http://zydecx.github.io/2014/11/learn-higcharts-2.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun Aug 23 17:22:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2 id="javascript">在JavaScript中定义变量</h2>
-<p>如下所示，定义变量<code>message</code>，并赋值<code>&quot;hi&quot;</code>。</p>
-<pre><code>var message = &quot;hi&quot;;</code></pre>
-<p>其中，关键字<code>var</code>可省略，即直接通过<code>message = &quot;hi&quot;;</code>定义变量，但这种方式不推荐使用（该问题会在全局变量与局部变量中再讨论）。</p>
-<p>此外，也可以通过下面的方式一次定义多个变量。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-variable.html">...more</a></div>
 
 	</div>
 </article>

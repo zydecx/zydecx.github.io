@@ -114,7 +114,7 @@ The key&#39;s randomart image is:
 <pre><code>ssh-agent -s</code></pre>
 <p><strong>Note:</strong></p>
 <p>使用<code>msysgit Bash on Windows</code>时，需要执行下面的命令才能成功启动。否则接下来使用<code>ssh-add</code>时会出现<code>Could not open a connection to your authentication agent</code>的错误。<a href="http://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent">引用</a></p>
-<pre><code>eval `ssh-agent -s`或eval \\$(ssh-agent -s)</code></pre></li>
+<pre><code>eval `ssh-agent -s`或eval $(ssh-agent -s)</code></pre></li>
 <li><p>将密钥添加到ssh-agent</p>
 <pre><code>ssh-add ~/.ssh/id_rsa</code></pre></li>
 </ol>
