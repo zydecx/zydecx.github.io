@@ -47,6 +47,142 @@
           
 <article>
 	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 18:12:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p>阅读本文前，请先参考<strong>使用SSH密钥连接Git仓库</strong>了解SSH密钥配置方法。</p>
+<h2>场景</h2>
+<p>有时，在一台机器上需同时使用多个Git账号（个人账号和工作账号），不同的Git仓库使用不同的账号访问。本文将介绍如何通过配置实现该需求。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2 id="ssh">检查SSH密钥是否存在</h2>
+<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
+<pre><code>ls -al ~/.ssh</code></pre>
+<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Thu Aug 13 10:51:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/GitLab">GitLab</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="https://about.gitlab.com/features/">GitLab</a>是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的<code>Git</code>项目仓库，可以通过Web界面访问公开或私人项目。</p>
+<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<div class="article-more"><a href="http://zydecx.github.io/2015/08/build-gitlab.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun May 03 17:49:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Source Insight">Source Insight</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="http://www.sourceinsight.com/eval.html">Source Insight</a>是一款优秀的代码编辑和查看软件，提供了丰富的代码高亮、符号关联等功能，尤其对于代码查看及其方便。目前的最新版本是<a href="http://www.sourceinsight.com/distribute/Si3576Setup.exe">3.50.0076</a>。</p>
+<p>使用Source Insight查看Java项目代码时，需要做以下工作：</p>
+<ol>
+<li><p>关联JDK源代码<br />Source Insight工作空间下提供一个<code>Base</code>项目，这是一个全局项目，工作空间下的其他项目均可访问该项目下的代码并建立符号关联。因此，可以将系统库文件放在<code>Base</code>项目下。对于Java项目而言，可以将JDK源代码置于<code>Base</code>项目下，使其他项目均可访问JDK的源码。</p>
+<a href="http://blog.csdn.net/erickhuang1989/article/details/8524446">配置方法</a>为：<div class="article-more"><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
 		<h1><a href="http://zydecx.github.io/2015/05/eclipse-style.html">Eclipse风格配置</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
@@ -81,39 +217,6 @@
 </ul></li>
 <li><p>中文字体</p>
 <p>Eclipse显示的中文默认很小，可以有两种方法解决这个问题：<div class="article-more"><a href="http://zydecx.github.io/2015/05/eclipse-style.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Mon Aug 17 18:12:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p>阅读本文前，请先参考<strong>使用SSH密钥连接Git仓库</strong>了解SSH密钥配置方法。</p>
-<h2>场景</h2>
-<p>有时，在一台机器上需同时使用多个Git账号（个人账号和工作账号），不同的Git仓库使用不同的账号访问。本文将介绍如何通过配置实现该需求。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">...more</a></div>
 
 	</div>
 </article>
@@ -197,109 +300,6 @@
 	<p>从<a href="http://www.ubuntu.org.cn/download/desktop" target="_blank">Ubuntu官网</a>中下载Ubuntu安装包<strong>ubuntu-14.04.1-desktop-amd64.iso</strong>。</p>
 	<h3>2、使用Wubi安装Ubuntu</h3>
 	<p>将安装包中wubi.exe解压到与安装包相同目录下，断开网络，运行wubi.exe，在弹出界面中配置安装的磁盘分区、分配空间大小、语言、用户名、密码等，安装Ubuntu。安装完成后重启，等待后续安装工作完成后，即可进入Ubuntu系统。</p><div class="article-more"><a href="http://zydecx.github.io/2015/01/install-ubuntu-with-wubi.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2 id="ssh">检查SSH密钥是否存在</h2>
-<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
-<pre><code>ls -al ~/.ssh</code></pre>
-<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun May 03 17:49:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Source Insight">Source Insight</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p><a href="http://www.sourceinsight.com/eval.html">Source Insight</a>是一款优秀的代码编辑和查看软件，提供了丰富的代码高亮、符号关联等功能，尤其对于代码查看及其方便。目前的最新版本是<a href="http://www.sourceinsight.com/distribute/Si3576Setup.exe">3.50.0076</a>。</p>
-<p>使用Source Insight查看Java项目代码时，需要做以下工作：</p>
-<ol>
-<li><p>关联JDK源代码<br />Source Insight工作空间下提供一个<code>Base</code>项目，这是一个全局项目，工作空间下的其他项目均可访问该项目下的代码并建立符号关联。因此，可以将系统库文件放在<code>Base</code>项目下。对于Java项目而言，可以将JDK源代码置于<code>Base</code>项目下，使其他项目均可访问JDK的源码。</p>
-<a href="http://blog.csdn.net/erickhuang1989/article/details/8524446">配置方法</a>为：<div class="article-more"><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Thu Aug 13 10:51:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/GitLab">GitLab</a></li>
-
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p><a href="https://about.gitlab.com/features/">GitLab</a>是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的<code>Git</code>项目仓库，可以通过Web界面访问公开或私人项目。</p>
-<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<div class="article-more"><a href="http://zydecx.github.io/2015/08/build-gitlab.html">...more</a></div>
 
 	</div>
 </article>
