@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/styles.css">
+    <link rel="stylesheet" href="http://zydecx.github.io/stylesheets/github-dark.css">
+    <script src="http://zydecx.github.io/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>Class对象（Java）</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="Java">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>Class对象（Java）</title>
+<meta name="htmldecoder:category" content="技术">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-10-18 23:40">
+<meta name="htmldecoder:modified" content="2015-10-18 23:40">
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="header-container">
+        <header>
+          <div class="header-wrapper">
+            <h1>Zydecx's Site</h1>
+            <p>Debug code, debug life, debug today!</p>
+            <ul>
+              <li><a class="buttons github" href="https://github.com/zydecx">View On<strong>GitHub</strong></a></li>
+            </ul>
+          </div>
+          <div class="menu-container">
+            <nav>
+              <ul class="main-menu menu-popup">
+                <li><a href="http://zydecx.github.io">Home</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <div id="main-container" class="row">
+        <div class="page-content">
+          <!--htmldecoder:body_title-->
+          
+<article>
+	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/10/java class.html">Class对象（Java）</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun Oct 18 23:40:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p>关于Class对象，需要了解的是：</p>
+<ul>
+<li>每个类都有一个Class对象</li>
+<li>默认情况下，类通过“原生类加载器”从磁盘中加载；可以挂接其他的类加载器</li>
+<li>Java采用动态加载机制；类在第一次被访问静态成员时被加载，从这个角度上讲，可以认为构造器为类的静态方法</li>
+</ul>
+<!--htmldecoder:more-->
+<h2 id="class">获得Class对象</h2>
+<p>获得Class对象的方法有：</p>
+<ul>
+<li>Class类的静态方法<code>forName</code>，<code>Class.forName(&quot;full-qualified-class-name&quot;)</code></li>
+<li>对象的<code>getClass()</code>方法，该方法属于<code>Object</code></li>
+<li>类字面常量<code>class</code>，<code>ClassName.class</code>
+<ul>
+<li>对于基本类型，有<code>boolean.class &lt;=&gt; Boolean.TYPE</code>，但<code>boolean.class != Boolean.class</code></li>
+</ul></li>
+</ul>
+<p>以上方法获得的Class对象是等价的，即</p>
+<pre><code>String s = &quot;string&quot;;
+Class stringClass1 = s.getClass();
+Class stringClass2 = Class.forName(&quot;java.lang.String&quot;);
+Class stringClass3 = String.class;
+
+stringClass1 == stringClass2;   // =true
+stringClass1 == stringClass3;   // =true</code></pre>
+<h2 id="class">Class对象的几个方法</h2>
+<ul>
+<li><p><code>getFields()</code>/<code>getDeclaredFields()</code></p>
+<p><code>getFields()</code>获得类的所有<code>public</code>数据成员，包括父类的；<br /><code>getDeclaredFields()</code>获得类的所有数据成员（<code>public</code>,<code>protected</code>,<code>private</code>,<code>default</code>)，不包括父类。</p>
+<p>其他<code>getXxx()</code>/<code>getDeclaredXxx()</code>逻辑与此类似。</p></li>
+<li><p><code>newInstance()</code></p>
+<p>创建实例，返回<code>Object</code>类型。</p></li>
+</ul>
+<h2 id="class">泛化的Class引用</h2>
+<p>Class引用支持泛型引用（Java SE5+），如<code>Class&lt;Integer&gt; intClass;</code>。</p>
+<ul>
+<li><p><code>newInstance()</code>返回确定类型</p>
+<p>不使用泛型引用，<code>newInstance()</code>方法返回<code>Object</code>类型对象；使用后可返回确定类型，如</p>
+<pre><code>Class&lt;Integer&gt; intClass = Integer.class;
+Class normalClass = Integer.class;
+
+Integer intValue = intClass.newInstance();
+Object normalValue = normalClass.newInstance();</code></pre></li>
+<li><p><code>?</code>通配符</p>
+<p><code>?</code>通配符可解决具有继承关系的Class引用，如下例所示，<code>norNumClass</code>不能引用<code>int.class</code>，相反，<code>numClass</code>却可以。</p>
+<pre><code>Class&lt;?&gt; normalClass;
+normalClass = String.class;
+normalClass = HashMap.class; 
+
+Class&lt;? extends Number&gt; numClass;
+numClass = int.class;
+numClass = Number.class;
+
+Class&lt;Number&gt; norNumClass = Number.class;</code></pre></li>
+<li><p><code>getSupperclass()</code>返回父类泛化类型</p>
+<p>虽然，可以在编译时确定一个类的父类，但使用<code>getSupperclass()</code>获得父类Class引用时，只能使用下面的方式：</p>
+<pre><code>Class&lt;? super String&gt; stringSuper = String.class.getSupperclass();</code></pre>
+<p>特别地，</p>
+<ul>
+<li>对于Object/接口/基本类型/void，返回<code>null</code></li>
+<li>对于Object，引用方式需改为<code>Class&lt;Object&gt; objectSuper = Object.class.getSupperclass();</code></li>
+</ul></li>
+</ul>
+<h2>初始化（深入研究）</h2>
+<p>之前曾经讨论过创建对象时的初始化顺序，这里将进一步研究。</p>
+<h3>类的初始化</h3>
+<p>类的加载和初始化顺序为：</p>
+<ol>
+<li><p>加载</p>
+<p>由类加载器执行，从磁盘（或其他）中查找字节码，创建Class对象。</p></li>
+<li><p>链接</p>
+<p>验证字节码，为静态域分配存储空间。该阶段将初始化编译时常量（static final修饰，且值为常量）。如果必须的话，解析对其他类的引用。</p></li>
+<li><p>初始化</p>
+<p>先初始化父类静态变量和初始化块，再初始化本类的静态变量和初始化块。</p></li>
+</ol>
+<p>对于类的初始化，有以下结论：</p>
+<ul>
+<li>引用类的字面常量<code>class</code>或编译时常量，仅执行加载和链接，不初始化</li>
+<li>引用<code>Class.forName()</code>或类的静态方法或非常熟静态域时，先执行加载和链接，再执行初始化</li>
+</ul>
+<h3>对象的初始化</h3>
+<p>创建对象时，首先执行类的初始化，即类的加载、链接和初始化。之后，执行对象的初始化，包括：</p>
+<ol>
+<li>在堆上为对象分配存储空间</li>
+<li>将存储空间清零，基本类型数据设为默认值，引用类型设为null</li>
+<li>执行非静态对象（包括非静态域和初始化块）初始化</li>
+<li>执行构造器</li>
+</ol>
+<p>当存在继承关系时，1、2步将同时完成父类和子类的存储空间分配和清零，之后先执行父类的非静态对象初始化和构造器，再执行子类的非静态对象初始化和构造器</p>
+<h3>示例（类的初始化）</h3>
+<p>逐句执行<code>ClassInitialization.main()</code>中的每一条语句，观察相应的输出，来理解类的初始化。</p>
+<pre><code>public class BaseClass {
+    public static final String aaToExtend = &quot;base aa&quot;;
+    public static final String aa = &quot;aa&quot;;
+    public static String bb = &quot;bb&quot;;
+    
+    static {
+        System.out.println(&quot;base static init&quot;);
+    }
+    
+}
+
+
+public class ExtendClass extends BaseClass {
+    public static final String aaToExtend = &quot;extend aa&quot;;
+    public static final String cc = &quot;cc&quot;;
+    public static String dd = &quot;dd&quot;;
+    
+    static {
+        System.out.println(&quot;extend static init&quot;);
+    }
+}
+
+public class ClassInitialization {
+    public static void main(String[] arg) throws ClassNotFoundException {
+    //  System.out.println(BaseClass.aaToExtend);   //base aa
+    //  System.out.println(BaseClass.aa);   //aa
+    //  System.out.println(BaseClass.bb);   //base static init\nbb
+    //  Class&lt;BaseClass&gt; c = BaseClass.class;   //
+    //  Class c = Class.forName(&quot;BaseClass&quot;);   //base static init
+
+    //  System.out.println(ExtendClass.aaToExtend); //extend aa
+    //  System.out.println(ExtendClass.cc); //cc
+    //  System.out.println(ExtendClass.dd); //base static init\nextend static init\ndd
+    //  Class&lt;ExtendClass&gt; c = ExtendClass.class;   //
+    //  Class c = Class.forName(&quot;ExtendClass&quot;); //base static init\nextend static init
+        
+    }
+}</code></pre>
+
+<!--htmldecoder:article_more-->
+	</div>
+</article>
+
+<hr class="article-separator">
+
+          <!--htmldecoder:pagination-->
+          
+          <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
+        </div>
+        <aside>
+          
+<nav>
+  <form action="http://zydecx.github.io/search.html">
+  	<input type="text" name="q" placeholder="Search" class="search google">
+  </form>
+</nav>
+
+<nav>
+	<ul>
+		<a href="#"><strong>Recent</strong></a>
+		
+<li><a href="http://zydecx.github.io/2015/10/java class.html">Class对象（Java）</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></li>
+
+<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/tag"><strong>Tag</strong></a>
+		
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
+
+<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<a href="http://zydecx.github.io/category"><strong>Category</strong></a>
+		
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+<li><a href="http://zydecx.github.io/category/随笔">随笔</a></li>
+
+	</ul>
+</nav>
+
+        </aside>
+      </div>
+    </div>
+    <div id="footer-container">
+      <footer>
+        <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+        <p>Updated by <a href="https://github.com/zydecx/modernist">zydecx</a></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://zydecx.github.io/javascripts/common.js"></script>
+  </body>
+</html>
