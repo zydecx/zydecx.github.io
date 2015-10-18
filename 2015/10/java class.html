@@ -13,7 +13,7 @@
     <title>Class对象（Java）</title>
 
 <meta name="htmldecoder:abstract" content="">
-<meta name="htmldecoder:tags" content="Java">
+<meta name="htmldecoder:tags" content="Java, Java编程思想">
 <meta name="htmldecoder:enabled" content="true">
 <meta name="htmldecoder:author" content="zydecx">
 <title>Class对象（Java）</title>
@@ -70,6 +70,8 @@
 				Tag:
 				
 <li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java编程思想">Java编程思想</a></li>
 
 			</ul>
 		</div>
@@ -154,7 +156,7 @@ Class&lt;Number&gt; norNumClass = Number.class;</code></pre></li>
 <p>对于类的初始化，有以下结论：</p>
 <ul>
 <li>引用类的字面常量<code>class</code>或编译时常量，仅执行加载和链接，不初始化</li>
-<li>引用<code>Class.forName()</code>或类的静态方法或非常熟静态域时，先执行加载和链接，再执行初始化</li>
+<li>引用<code>Class.forName()</code>或类的静态方法或非常数静态域时，先执行加载和链接，再执行初始化</li>
 </ul>
 <h3>对象的初始化</h3>
 <p>创建对象时，首先执行类的初始化，即类的加载、链接和初始化。之后，执行对象的初始化，包括：</p>
