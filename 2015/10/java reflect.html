@@ -10,7 +10,18 @@
     <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>Zydecx's Site</title>
+    <title>类型转换与反射（Java）</title>
+
+<meta name="htmldecoder:abstract" content="">
+<meta name="htmldecoder:tags" content="Java, Java编程思想">
+<meta name="htmldecoder:enabled" content="true">
+<meta name="htmldecoder:author" content="zydecx">
+<title>类型转换与反射（Java）</title>
+<meta name="htmldecoder:category" content="技术">
+<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
+<meta name="htmldecoder:date" content="2015-10-21 00:05">
+<meta name="htmldecoder:modified" content="2015-10-18 23:40">
+
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -41,45 +52,6 @@
         <div class="page-content">
           <!--htmldecoder:body_title-->
           
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/10/java class.html">Class对象（Java）</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun Oct 18 23:40:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
-
-<li><a href="http://zydecx.github.io/tag/Java编程思想">Java编程思想</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p>关于Class对象，需要了解的是：</p>
-<ul>
-<li>每个类都有一个Class对象</li>
-<li>默认情况下，类通过“原生类加载器”从磁盘中加载；可以挂接其他的类加载器</li>
-<li>Java采用动态加载机制；类在第一次被访问静态成员时被加载，从这个角度上讲，可以认为构造器为类的静态方法</li>
-</ul>
-<div class="article-more"><a href="http://zydecx.github.io/2015/10/java class.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
 <article>
 	<header style="">
 		<h1><a href="http://zydecx.github.io/2015/10/java reflect.html">类型转换与反射（Java）</a></h1>
@@ -200,244 +172,13 @@ class DynamicProxyDemo {
 <li><p>若为一系列实现公共接口的类创建空对象，则通过动态代理，创建一个实现了公共接口和<code>Null</code>接口的类，将该类对象作为空对象。特别地，为了标注空对象属于哪个实现类，可通过在空对象中添加实现类的类型数据，方便辨识。</p></li>
 </ul>
 
-
+<!--htmldecoder:article_more-->
 	</div>
 </article>
 
 <hr class="article-separator">
 
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Wed Aug 26 21:55:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2>定义函数</h2>
-<p>最常见的函数定义方法如下所示，该示例定义了一个函数——sayHi。</p>
-<pre><code>sayHi();
-function sayHi(name, message) {
-    alert(&quot;hello &quot; + name + &quot;,&quot; + message);
-}</code></pre>
-<p>还可以通过函数表达式定义一个函数，如下例所示，同样定义了函数sayHi，只不过sayHi在这里是作为一个变量出现的，使用<code>typeof sayHi</code>检测得到<code>&quot;function&quot;</code>。但由于JavaScript变量初始化顺序的问题，这种定义方式要求函数必须在声明后才能使用，而不能像前面的示例一样在声明前使用。而且，从这种定义方式，也就不难理解另一个现象：函数可以被覆盖，就像变量被重新赋值一样。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-function.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun Aug 23 21:04:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2>数据类型概述</h2>
-<p>JavaScript的数据类型不像Java等语言那样清晰，或许这是JavaScript的变量是松散类型的原因。概括地讲，JavaScript变量的数据类型包括：</p>
-<ul>
-<li>Undefined</li>
-<li>Boolean</li>
-<li>Number</li>
-<li>String</li>
-<li>Object</li>
-<li>Function</li>
-</ul>
-<p>其中，Boolean/Number/String为基本类型，Object为引用类型，Function为函数，Undefined为JavaScript作为松散类型所特有的数据类型，在后文中会专门介绍。</p>
-<p><strong>注</strong>：<br /> 在【JavaScript高级程序设计】中，还定义了专门的Null类型，表示字面值为<code>null</code>的变量；并将Undefined类型也作为基本数据类型的一种。<br /><div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun Aug 23 17:22:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2 id="javascript">在JavaScript中定义变量</h2>
-<p>如下所示，定义变量<code>message</code>，并赋值<code>&quot;hi&quot;</code>。</p>
-<pre><code>var message = &quot;hi&quot;;</code></pre>
-<p>其中，关键字<code>var</code>可省略，即直接通过<code>message = &quot;hi&quot;;</code>定义变量，但这种方式不推荐使用（该问题会在全局变量与局部变量中再讨论）。</p>
-<p>此外，也可以通过下面的方式一次定义多个变量。<div class="article-more"><a href="http://zydecx.github.io/2015/08/javascript-variable.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Mon Aug 17 18:12:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p>阅读本文前，请先参考<strong>使用SSH密钥连接Git仓库</strong>了解SSH密钥配置方法。</p>
-<h2>场景</h2>
-<p>有时，在一台机器上需同时使用多个Git账号（个人账号和工作账号），不同的Git仓库使用不同的账号访问。本文将介绍如何通过配置实现该需求。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/git-ssh.html">使用SSH密钥连接Git仓库</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Mon Aug 17 15:55:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<h2 id="ssh">检查SSH密钥是否存在</h2>
-<p>打开<code>Git Bash</code>，执行下面的命令，显示<code>.ssh</code>目录下的所有文件：</p>
-<pre><code>ls -al ~/.ssh</code></pre>
-<p>如果该目录下已经存在密钥对（比如，<code>id_rsa.pub</code>/<code>id_rsa</code>是一对公/私钥），可跳过下一步直接添加密钥到ssh-agent。<div class="article-more"><a href="http://zydecx.github.io/2015/08/git-ssh.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/build-gitlab.html">搭建GitLab服务器</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Thu Aug 13 10:51:00 CST 2015</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/GitLab">GitLab</a></li>
-
-<li><a href="http://zydecx.github.io/tag/Git">Git</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-<p><a href="https://about.gitlab.com/features/">GitLab</a>是一个利用<code>Ruby on Rails</code>开发的开源应用程序，实现一个自托管的<code>Git</code>项目仓库，可以通过Web界面访问公开或私人项目。</p>
-<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<div class="article-more"><a href="http://zydecx.github.io/2015/08/build-gitlab.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
-          
-<div class="pagination-container">
-	<ul>
-		
-<li class="disabled"><span>Prev</span></li>
-
-<li class="active"><span>1</span></li>
-
-<li><a href="http://zydecx.github.io/page/2">2</a></li>
-
-<li><a href="http://zydecx.github.io/page/3">3</a></li>
-
-<li><a href="http://zydecx.github.io/page/2">Next</a></li>
-
-	</ul>
-</div>
-
+          <!--htmldecoder:pagination-->
           
           <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
         </div>

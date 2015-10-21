@@ -10,18 +10,7 @@
     <script src="http://zydecx.github.io/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>JavaScript变量</title>
-
-<meta name="htmldecoder:abstract" content="">
-<meta name="htmldecoder:tags" content="JavaScript">
-<meta name="htmldecoder:enabled" content="true">
-<meta name="htmldecoder:author" content="zydecx">
-<title>JavaScript变量</title>
-<meta name="htmldecoder:category" content="技术">
-<meta name="htmldecoder:authorurl" content="https://github.com/zydecx">
-<meta name="htmldecoder:date" content="2015-08-23 17:22">
-<meta name="htmldecoder:modified" content="2015-08-23 17:22">
-
+    <title>Zydecx's Site</title>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -54,10 +43,10 @@
           
 <article>
 	<header style="">
-		<h1><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></h1>
+		<h1><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">学习Highcharts（一）——什么是Highcharts</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
-				<span>Time: <time>Sun Aug 23 17:22:00 CST 2015</time></span>
+				<span>Time: <time>Sun Jul 13 01:47:00 CST 2014</time></span>
 				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
 			</p>
 			<ul class="category">
@@ -69,54 +58,124 @@
 			<ul class="tag">
 				Tag:
 				
-<li><a href="http://zydecx.github.io/tag/JavaScript">JavaScript</a></li>
+<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
 
 			</ul>
 		</div>
 	</header>
 	<div class="article-content">
 		
-<h2 id="javascript">在JavaScript中定义变量</h2>
-<p>如下所示，定义变量<code>message</code>，并赋值<code>&quot;hi&quot;</code>。</p>
-<pre><code>var message = &quot;hi&quot;;</code></pre>
-<p>其中，关键字<code>var</code>可省略，即直接通过<code>message = &quot;hi&quot;;</code>定义变量，但这种方式不推荐使用（该问题会在全局变量与局部变量中再讨论）。</p>
-<p>此外，也可以通过下面的方式一次定义多个变量。<!--htmldecoder:more--></p>
-<pre><code>var message = &quot;hi&quot;,
-    name = &quot;john&quot;,
-    age = 20,
-    sex;    // typeof sex = &#39;undefined&#39;</code></pre>
-<h2 id="javascript">JavaScript变量为松散类型</h2>
-<p>所谓松散类型，即一个变量可以保存任何类型的数据，比如下面这种方式是可以的（但不推荐使用）。</p>
-<pre><code>var message = &quot;hi&quot;; // typeof message = &#39;string&#39;
-message = 20;   // typeof message = &#39;number&#39;</code></pre>
-<p>需要强调一点，松散类型仅仅只变量可以保存任何类型数据，但变量本身是有类型的（如上例中的注释所示）。变量未附任何值时，其类型为<code>undefined</code>。</p>
-<h2>全局变量与局部变量</h2>
-<p>在函数中使用<code>var</code>定义的变量为局部变量，否则为全局变量。局部变量会在函数退出时销毁。</p>
-<p>举个例子，下面这段程序，<code>message</code>是在<code>testFunc</code>函数中定义的局部变量，只能在函数内访问；函数退出后再访问这个变量，则会报<code>ReferenceError</code>错误。与此相反，<code>globalMessage</code>是全局变量，不仅可以在函数内访问，在函数内的修改也会反应到全局中。</p>
-<pre><code>var globalMessage = &quot;hello&quot;;
-function testFunc() {
-    var message = &quot;hi&quot;;
-    alert(message); // =&quot;hi&quot;
-    alert(globalMessage);   // =&quot;hello&quot;
-    globalMessage = &quot;hello from function&quot;;
-}
-testFunc();
-alert(message); // [ERROR]ReferenceError: message is not defined        
-alert(globalMessage);   // =&quot;hello from function&quot;</code></pre>
-<p>前面说过，定义变量时，关键字<code>var</code>可以省略，这时候，变量就会变成全局变量，即便它是在函数中定义。如下面的例子所示。但这种方式不推荐使用，一是不便于对全局变量进行维护；二是在严格模式下不支持，会报<code>ReferenceError</code>错误；三是由于JavaScript变量初始化顺序的问题，可能导致一些未知的错误，这个问题后续会有专门的文章来介绍。</p>
-<pre><code>function testFunc() {
-    message = &quot;hi&quot;;
-}
-testFunc();
-alert(message); // =&quot;hi&quot;</code></pre>
+	<h2>我们需要一份好看的报表——从需求出发</h2>
+<p>假设你有一份几个城市过去一年月降水量的数据，你可以像下面这样列给你的客户或老板看：</p>
+<div>
+<table id="datatable">
+<thead>
+<tr>
+<th>月份</th>
+<th>Jan</th>
+<th>Feb</th>
+<th>Mar</th>
+<th>Apr</th>
+<th>May</th>
+<th>Jun</th>
+<th>Jul</th>
+<th>Aug</th>
+<th>Sep</th>
+<th>Oct</th>
+<th>Nov</th>
+<th>Dec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokyo</td>
+<td>49.9</td>
+<td>71.5</td>
+<td>106.4</td>
+<td>129.2</td>
+<td>144</td>
+<td>176</td>
+<td>135.6</td>
+<td>148.5</td>
+<td>216.4</td>
+<td>194.1</td>
+<td>95.6</td>
+<td>54.4</td>
+</tr>
+<tr>
+<td>New York</td>
+<td>83.6</td>
+<td>78.8</td>
+<td>98.5</td>
+<td>93.4</td>
+<td>106</td>
+<td>84.5</td>
+<td>105</td>
+<td>104.3</td>
+<td>91.2</td>
+<td>83.5</td>
+<td>106.6</td>
+<td>92.3</td>
+</tr>
+<tr>
+<td>London</td>
+<td>48.9</td>
+<td>38.8</td>
+<td>39.3</td>
+<td>41.4</td>
+<td>47</td>
+<td>48.3</td>
+<td>59</td>
+<td>59.6</td>
+<td>52.4</td>
+<td>65.2</td>
+<td>59.3</td>
+<td>51.2</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>42.4</td>
+<td>33.2</td>
+<td>34.5</td>
+<td>39.7</td>
+<td>52.6</td>
+<td>75.5</td>
+<td>57.4</td>
+<td>60.4</td>
+<td>47.6</td>
+<td>39.1</td>
+<td>46.8</td>
+<td>51.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>看上去很整齐，表格也挺漂亮。可看到这密密麻麻的数据，客户或老板会不会有种想哭的冲动？</p>
 
-<!--htmldecoder:article_more-->
+<p>那如果换成下面这样呢？<div class="article-more"><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">...more</a></div>
+
 	</div>
 </article>
 
 <hr class="article-separator">
 
-          <!--htmldecoder:pagination-->
+          
+<div class="pagination-container">
+	<ul>
+		
+<li><a href="http://zydecx.github.io/page/2">Prev</a></li>
+
+<li><a href="http://zydecx.github.io">1</a></li>
+
+<li><a href="http://zydecx.github.io/page/2">2</a></li>
+
+<li class="active"><span>3</span></li>
+
+<li class="disabled"><span>Next</span></li>
+
+	</ul>
+</div>
+
           
           <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
         </div>

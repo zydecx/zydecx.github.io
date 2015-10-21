@@ -43,6 +43,41 @@
           
 <article>
 	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">使用Source Insight查看Java项目代码</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Sun May 03 17:49:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/经验">经验</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Source Insight">Source Insight</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<p><a href="http://www.sourceinsight.com/eval.html">Source Insight</a>是一款优秀的代码编辑和查看软件，提供了丰富的代码高亮、符号关联等功能，尤其对于代码查看及其方便。目前的最新版本是<a href="http://www.sourceinsight.com/distribute/Si3576Setup.exe">3.50.0076</a>。</p>
+<p>使用Source Insight查看Java项目代码时，需要做以下工作：</p>
+<ol>
+<li><p>关联JDK源代码<br />Source Insight工作空间下提供一个<code>Base</code>项目，这是一个全局项目，工作空间下的其他项目均可访问该项目下的代码并建立符号关联。因此，可以将系统库文件放在<code>Base</code>项目下。对于Java项目而言，可以将JDK源代码置于<code>Base</code>项目下，使其他项目均可访问JDK的源码。</p>
+<a href="http://blog.csdn.net/erickhuang1989/article/details/8524446">配置方法</a>为：<div class="article-more"><a href="http://zydecx.github.io/2015/05/source-insight-for-java.html">...more</a></div>
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
 		<h1><a href="http://zydecx.github.io/2015/05/eclipse-style.html">Eclipse风格配置</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
@@ -307,124 +342,6 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 
 <hr class="article-separator">
 
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">学习Highcharts（一）——什么是Highcharts</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun Jul 13 01:47:00 CST 2014</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-	<h2>我们需要一份好看的报表——从需求出发</h2>
-<p>假设你有一份几个城市过去一年月降水量的数据，你可以像下面这样列给你的客户或老板看：</p>
-<div>
-<table id="datatable">
-<thead>
-<tr>
-<th>月份</th>
-<th>Jan</th>
-<th>Feb</th>
-<th>Mar</th>
-<th>Apr</th>
-<th>May</th>
-<th>Jun</th>
-<th>Jul</th>
-<th>Aug</th>
-<th>Sep</th>
-<th>Oct</th>
-<th>Nov</th>
-<th>Dec</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tokyo</td>
-<td>49.9</td>
-<td>71.5</td>
-<td>106.4</td>
-<td>129.2</td>
-<td>144</td>
-<td>176</td>
-<td>135.6</td>
-<td>148.5</td>
-<td>216.4</td>
-<td>194.1</td>
-<td>95.6</td>
-<td>54.4</td>
-</tr>
-<tr>
-<td>New York</td>
-<td>83.6</td>
-<td>78.8</td>
-<td>98.5</td>
-<td>93.4</td>
-<td>106</td>
-<td>84.5</td>
-<td>105</td>
-<td>104.3</td>
-<td>91.2</td>
-<td>83.5</td>
-<td>106.6</td>
-<td>92.3</td>
-</tr>
-<tr>
-<td>London</td>
-<td>48.9</td>
-<td>38.8</td>
-<td>39.3</td>
-<td>41.4</td>
-<td>47</td>
-<td>48.3</td>
-<td>59</td>
-<td>59.6</td>
-<td>52.4</td>
-<td>65.2</td>
-<td>59.3</td>
-<td>51.2</td>
-</tr>
-<tr>
-<td>Berlin</td>
-<td>42.4</td>
-<td>33.2</td>
-<td>34.5</td>
-<td>39.7</td>
-<td>52.6</td>
-<td>75.5</td>
-<td>57.4</td>
-<td>60.4</td>
-<td>47.6</td>
-<td>39.1</td>
-<td>46.8</td>
-<td>51.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>看上去很整齐，表格也挺漂亮。可看到这密密麻麻的数据，客户或老板会不会有种想哭的冲动？</p>
-
-<p>那如果换成下面这样呢？<div class="article-more"><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
           
 <div class="pagination-container">
 	<ul>
@@ -435,7 +352,9 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 
 <li class="active"><span>2</span></li>
 
-<li class="disabled"><span>Next</span></li>
+<li><a href="http://zydecx.github.io/page/3">3</a></li>
+
+<li><a href="http://zydecx.github.io/page/3">Next</a></li>
 
 	</ul>
 </div>
@@ -457,13 +376,13 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 		
 <li><a href="http://zydecx.github.io/2015/10/java class.html">Class对象（Java）</a></li>
 
+<li><a href="http://zydecx.github.io/2015/10/java reflect.html">类型转换与反射（Java）</a></li>
+
 <li><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></li>
 
 <li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
 
 <li><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></li>
-
-<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
 
 	</ul>
 </nav>
@@ -480,7 +399,7 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 
 <li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
 
-<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+<li><a href="http://zydecx.github.io/tag/Java编程思想">Java编程思想</a></li>
 
 	</ul>
 </nav>

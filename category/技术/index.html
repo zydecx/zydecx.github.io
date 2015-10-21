@@ -86,6 +86,132 @@
 
 <article>
 	<header style="">
+		<h1><a href="http://zydecx.github.io/2015/10/java reflect.html">类型转换与反射（Java）</a></h1>
+		<div class="article-media">
+			<p class="media-extra">
+				<span>Time: <time>Wed Oct 21 00:05:00 CST 2015</time></span>
+				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
+			</p>
+			<ul class="category">
+				Category:
+				
+<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
+
+			</ul>
+			<ul class="tag">
+				Tag:
+				
+<li><a href="http://zydecx.github.io/tag/Java">Java</a></li>
+
+<li><a href="http://zydecx.github.io/tag/Java编程思想">Java编程思想</a></li>
+
+			</ul>
+		</div>
+	</header>
+	<div class="article-content">
+		
+<h2>类型转换&amp;检查</h2>
+<h3>类型转换</h3>
+<ol>
+<li><p>强制类型转换</p>
+<p>强制类型转换通过<code>(NewType)</code>形式实现类型的强制转换。如下例所示，将<code>aList</code>强制转换为<code>ArrayList</code>类型。</p>
+<pre><code>List aList = new ArrayList();
+ArrayList anArrayList = (ArrayList) aList;</code></pre></li>
+<li><p>Class.cast()</p>
+<p>这是Class提供的一个类型装的方法，通过该方法可以更灵活的实现类型转换，而不用在代码编写的时候就确定要转换的类的名称。（事实上，该方法使用情况不多，Java SE5类库中仅一处有使用）</p>
+<pre><code>List aList = new ArrayList();
+Class&lt;ArrayList&gt; arrayListClass = ArrayList.class;
+ArrayList anArrayList = arrayListClass.cast(aList);</code></pre></li>
+</ol>
+<h3>类型检查</h3>
+<ol>
+<li>instanceof运算符，左操作数为对象，右操作数为类名</li>
+<li>Class.isInstance()方法，参数为对象实例</li>
+<li><p>Class.isAssignableFrom()方法，参数为Class对象</p>
+<p>SuperTest superBean = new SuperTest();<br />ExtendTest extendBean = new ExtendTest();</p>
+<p>Class&lt;?&gt; superClass = SuperTest.class;<br />Class&lt;?&gt; extendClass = ExtendTest.class;</p>
+<p>System.out.println(extendBean instanceof SuperTest); // true<br />System.out.println(superBean instanceof ExtendTest); // false<br />System.out.println(extendClass.isInstance(extendBean)); // true<br />System.out.println(superClass.isAssignableFrom(extendClass)); // true<br />System.out.println(superClass.isAssignableFrom(superClass)); // true</p></li>
+</ol>
+<h2>反射</h2>
+<p>Java的反射通过Class类和java.lang.reflect类库实现。通过它们，可以动态获得类的构造器、方法、数据成员等信息并创建新对象、执行方法和设置数据成员。</p>
+<h3>获取/修改类的方法和数据成员</h3>
+<p>通过反射可以获得类的所有构造器、方法和数据成员，即便它们是被封装在类内部（private/protected/default）。因此，使用反射需要考虑，对违反访问权限的操作是否有风险（如日后更新导致封装改变）。</p>
+<h4>方法的访问与调用</h4>
+<p>如下例所示，通过反射获得<code>Random</code>的<code>nextInt(int n)</code>方法并执行。</p>
+<pre><code>Random rand = new Random();
+Method randNextIntMethod = rand.getClass().getDeclaredMethod(&quot;nextInt&quot;, int.class);
+randNextIntMethod.setAccessible(true);
+System.out.println(randNextIntMethod.invoke(rand, 10));</code></pre>
+<h4>域的访问与修改</h4>
+<p>如下例所示，通过反射读取并修改<code>Thread</code>的私有域<code>threadLocals</code> 。</p>
+<pre><code>Thread thread = Thread.currentThread();
+Field threadLocalsField = thread.getClass().getDeclaredField(&quot;threadLocals&quot;);
+threadLocalsField.setAccessible(true);
+System.out.println(threadLocalsField.get(thread));
+threadLocalsField.set(thread, null);
+System.out.println(threadLocalsField.get(thread));</code></pre>
+<h3>动态代理</h3>
+<p>代理是基本的设计模式之一，可以在不改变现有类的结构基础上，为接口添加额外的操作，如日志记录，度量方法调用开销等。</p>
+<p>对于代理模式，代理的是确定的接口或类，而动态代理则在此基础上，可动态创建代理并调用代理方法，而不必局限于编译时指定的接口或类。一个动态代理的示例如下，它可以记录代理的方法调用的开销。需要注意的是，<code>invoke</code>方法中，传入的<code>proxy</code>为<code>DynamicProxy</code>的实例本身，实际调用的是<code>DynamicProxy</code>的数据成员<code>proxied</code>。</p>
+<pre><code>/**
+ * 方法调用开销代理
+ */
+class DynamicProxy implements InvocationHandler {
+    private Object proxied;
+    public DynamicProxy(Object proxied) {
+        this.proxied = proxied;
+    }
+    
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args)
+            throws Throwable {
+        System.out.println(&quot;** proxy:&quot; + proxied.getClass() + &quot;, method:&quot;
+                + method.getName() + &quot;, parameter types:&quot;
+                + Arrays.toString(method.getParameterTypes()));
+        long startTime = System.nanoTime();
+        
+        Object result =  method.invoke(proxied, args);
+        
+        long endTime = System.nanoTime();
+        System.out.printf(&quot;   cost time: %f ms\n&quot;, (endTime - startTime)/10e6);
+        
+        return result;
+    }
+}
+
+class DynamicProxyDemo {
+    public static void main(String[] args) {
+        List&lt;String&gt; aList = new ArrayList&lt;&gt;();
+        List&lt;String&gt; listProxy = (List&lt;String&gt;) Proxy.newProxyInstance(
+                List.class.getClassLoader(), new Class[] { List.class },
+                new DynamicProxy(aList));
+        listProxy.add(&quot;add a string&quot;);
+        listProxy.get(0);
+    }
+}
+
+/**Output:
+** proxy:class java.util.ArrayList, method:add, parameter types:[class java.lang.Object]
+   cost time: 0.030873 ms
+** proxy:class java.util.ArrayList, method:get, parameter types:[int]
+   cost time: 0.001478 ms
+*/</code></pre>
+<h3>空对象</h3>
+<p>使用空对象代替null，可以减少许多对null检查的代码，提高代码优雅性。当然，仍然需要对空对象的检查。可以通过创建一个空的<code>Null</code>接口，将实现该接口的对象作为空对象使用。典型的，</p>
+<ul>
+<li><p>若为一个类创建空对象，则创建一个该类的子类，子类实现<code>Null</code>接口，将子类对象作为该类的空对象</p>
+<p>将空对象作为单例使用（final static），可以通过<code>==</code>代替<code>Null</code>接口检查，判断一个对象是不是空对象。</p></li>
+<li><p>若为一系列实现公共接口的类创建空对象，则通过动态代理，创建一个实现了公共接口和<code>Null</code>接口的类，将该类对象作为空对象。特别地，为了标注空对象属于哪个实现类，可通过在空对象中添加实现类的类型数据，方便辨识。</p></li>
+</ul>
+
+
+	</div>
+</article>
+
+<hr class="article-separator">
+
+<article>
+	<header style="">
 		<h1><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></h1>
 		<div class="article-media">
 			<p class="media-extra">
@@ -303,125 +429,21 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 
 <hr class="article-separator">
 
-<article>
-	<header style="">
-		<h1><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">学习Highcharts（一）——什么是Highcharts</a></h1>
-		<div class="article-media">
-			<p class="media-extra">
-				<span>Time: <time>Sun Jul 13 01:47:00 CST 2014</time></span>
-				<span>, by <a href="https://github.com/zydecx">zydecx</a></span>
-			</p>
-			<ul class="category">
-				Category:
-				
-<li><a href="http://zydecx.github.io/category/技术">技术</a></li>
-
-			</ul>
-			<ul class="tag">
-				Tag:
-				
-<li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
-
-			</ul>
-		</div>
-	</header>
-	<div class="article-content">
-		
-	<h2>我们需要一份好看的报表——从需求出发</h2>
-<p>假设你有一份几个城市过去一年月降水量的数据，你可以像下面这样列给你的客户或老板看：</p>
-<div>
-<table id="datatable">
-<thead>
-<tr>
-<th>月份</th>
-<th>Jan</th>
-<th>Feb</th>
-<th>Mar</th>
-<th>Apr</th>
-<th>May</th>
-<th>Jun</th>
-<th>Jul</th>
-<th>Aug</th>
-<th>Sep</th>
-<th>Oct</th>
-<th>Nov</th>
-<th>Dec</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tokyo</td>
-<td>49.9</td>
-<td>71.5</td>
-<td>106.4</td>
-<td>129.2</td>
-<td>144</td>
-<td>176</td>
-<td>135.6</td>
-<td>148.5</td>
-<td>216.4</td>
-<td>194.1</td>
-<td>95.6</td>
-<td>54.4</td>
-</tr>
-<tr>
-<td>New York</td>
-<td>83.6</td>
-<td>78.8</td>
-<td>98.5</td>
-<td>93.4</td>
-<td>106</td>
-<td>84.5</td>
-<td>105</td>
-<td>104.3</td>
-<td>91.2</td>
-<td>83.5</td>
-<td>106.6</td>
-<td>92.3</td>
-</tr>
-<tr>
-<td>London</td>
-<td>48.9</td>
-<td>38.8</td>
-<td>39.3</td>
-<td>41.4</td>
-<td>47</td>
-<td>48.3</td>
-<td>59</td>
-<td>59.6</td>
-<td>52.4</td>
-<td>65.2</td>
-<td>59.3</td>
-<td>51.2</td>
-</tr>
-<tr>
-<td>Berlin</td>
-<td>42.4</td>
-<td>33.2</td>
-<td>34.5</td>
-<td>39.7</td>
-<td>52.6</td>
-<td>75.5</td>
-<td>57.4</td>
-<td>60.4</td>
-<td>47.6</td>
-<td>39.1</td>
-<td>46.8</td>
-<td>51.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>看上去很整齐，表格也挺漂亮。可看到这密密麻麻的数据，客户或老板会不会有种想哭的冲动？</p>
-
-<p>那如果换成下面这样呢？<div class="article-more"><a href="http://zydecx.github.io/2014/07/learn-higcharts-1.html">...more</a></div>
-
-	</div>
-</article>
-
-<hr class="article-separator">
-
           
+<div class="pagination-container">
+	<ul>
+		
+<li class="disabled"><span>Prev</span></li>
+
+<li class="active"><span>1</span></li>
+
+<li><a href="http://zydecx.github.io/category/技术/page/2">2</a></li>
+
+<li><a href="http://zydecx.github.io/category/技术/page/2">Next</a></li>
+
+	</ul>
+</div>
+
           
           <span style="line-height: 0; visibility: hidden;">This is a magic phrase. You CANNOT see it(I'll really FULE you if you do that), but it does work. Why? You may feel confused. OK, at least it doesn't afftect your experience and it works. That is what we call MAGICE!</span>
         </div>
@@ -439,13 +461,13 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 		
 <li><a href="http://zydecx.github.io/2015/10/java class.html">Class对象（Java）</a></li>
 
+<li><a href="http://zydecx.github.io/2015/10/java reflect.html">类型转换与反射（Java）</a></li>
+
 <li><a href="http://zydecx.github.io/2015/08/javascript-function.html">JavaScript函数</a></li>
 
 <li><a href="http://zydecx.github.io/2015/08/javascript-data-type.html">JavaScript数据类型检测</a></li>
 
 <li><a href="http://zydecx.github.io/2015/08/javascript-variable.html">JavaScript变量</a></li>
-
-<li><a href="http://zydecx.github.io/2015/08/git-ssh-multi-account.html">使用SSH密钥实现Git多账号切换</a></li>
 
 	</ul>
 </nav>
@@ -462,7 +484,7 @@ Exception in thread "main" java.io.StreamCorruptedException: invalid type code: 
 
 <li><a href="http://zydecx.github.io/tag/Highcharts">Highcharts</a></li>
 
-<li><a href="http://zydecx.github.io/tag/Eclipse">Eclipse</a></li>
+<li><a href="http://zydecx.github.io/tag/Java编程思想">Java编程思想</a></li>
 
 	</ul>
 </nav>
